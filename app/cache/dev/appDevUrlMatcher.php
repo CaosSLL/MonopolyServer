@@ -198,6 +198,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
             not_usuario_delete:
 
+            // usuario_autenticado
+            if ($pathinfo === '/usuario/autenticado') {
+                return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\UsuarioController::estaAutenticadoAction',  '_route' => 'usuario_autenticado',);
+            }
+
+            // usuario_login
+            if ($pathinfo === '/usuario/login') {
+                return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\UsuarioController::loginAction',  '_route' => 'usuario_login',);
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/p')) {
@@ -347,6 +357,23 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'jugador_delete')), array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\JugadorController::deleteAction',));
             }
             not_jugador_delete:
+
+        }
+
+        if (0 === strpos($pathinfo, '/casilla')) {
+            // casilla
+            if (rtrim($pathinfo, '/') === '/casilla') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'casilla');
+                }
+
+                return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\CasillaController::indexAction',  '_route' => 'casilla',);
+            }
+
+            // casilla_show
+            if (preg_match('#^/casilla/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'casilla_show')), array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\CasillaController::showAction',));
+            }
 
         }
 

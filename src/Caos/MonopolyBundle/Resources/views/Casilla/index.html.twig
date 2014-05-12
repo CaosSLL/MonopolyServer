@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Casilla list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Numero</th>
+                <th>Precio</th>
+                <th>Precioalquiler</th>
+                <th>Preciocabania</th>
+                <th>Preciohipoteca</th>
+                <th>Tipo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('casilla_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.nombre }}</td>
+                <td>{{ entity.numero }}</td>
+                <td>{{ entity.precio }}</td>
+                <td>{{ entity.precioAlquiler }}</td>
+                <td>{{ entity.precioCabania }}</td>
+                <td>{{ entity.precioHipoteca }}</td>
+                <td>{{ entity.tipo }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('casilla_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% endblock %}

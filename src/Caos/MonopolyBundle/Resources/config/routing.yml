@@ -2,18 +2,22 @@ caos_monopoly_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: CaosMonopolyBundle:Default:index }
 
-AcmeMonopolyBundle_usuario:
+CaosMonopolyBundle_usuario:
     resource: "@CaosMonopolyBundle/Resources/config/routing/usuario.yml"
     prefix:   /usuario
     
-AcmeMonopolyBundle_personaje:
+CaosMonopolyBundle_personaje:
     resource: "@CaosMonopolyBundle/Resources/config/routing/personaje.yml"
     prefix:   /personaje
     
-AcmeMonopolyBundle_partida:
+CaosMonopolyBundle_partida:
     resource: "@CaosMonopolyBundle/Resources/config/routing/partida.yml"
     prefix:   /partida
     
-AcmeMonopolyBundle_jugador:
+CaosMonopolyBundle_jugador:
     resource: "@CaosMonopolyBundle/Resources/config/routing/jugador.yml"
     prefix:   /jugador
+    
+CaosMonopolyBundle_casilla:
+    resource: "@CaosMonopolyBundle/Resources/config/routing/casilla.yml"
+    prefix:   /casilla

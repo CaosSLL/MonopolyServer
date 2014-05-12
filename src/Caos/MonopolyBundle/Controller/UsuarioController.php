@@ -15,6 +15,18 @@ use Caos\MonopolyBundle\Form\UsuarioType;
 class UsuarioController extends Controller
 {
 
+    public function loginAction(){
+        
+    }
+    
+    public function estaAutenticadoAction(){
+        if(isset($_SESSION["autenticado"])){
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array("autenticado"=>true));
+        }else{
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array("autenticado"=>false));
+        }
+    }
+    
     /**
      * Lists all Usuario entities.
      *

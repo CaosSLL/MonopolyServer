@@ -28,3 +28,11 @@ usuario_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "CaosMonopolyBundle:Usuario:delete" }
     requirements: { _method: post|delete }
+
+usuario_autenticado:
+    pattern: /autenticado
+    defaults: { _controller: "CaosMonopolyBundle:Usuario:estaAutenticado" }
+
+usuario_login:
+    pattern: /login
+    defaults: { _controller: "CaosMonopolyBundle:Usuario:login" }

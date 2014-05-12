@@ -1,0 +1,10 @@
+casilla:
+    pattern:  /
+    defaults: { _controller: "CaosMonopolyBundle:Casilla:index" }
+
+casilla_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CaosMonopolyBundle:Casilla:show" }
+
+
+

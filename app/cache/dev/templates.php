@@ -77,6 +77,8 @@
   'SwiftmailerBundle:Collector:swiftmailer.html.twig' => 'C:\\xampp\\htdocs\\MonopolyServer\\vendor\\symfony\\swiftmailer-bundle\\Symfony\\Bundle\\SwiftmailerBundle/Resources/views/Collector/swiftmailer.html.twig',
   'DoctrineBundle:Collector:db.html.twig' => 'C:\\xampp\\htdocs\\MonopolyServer\\vendor\\doctrine\\doctrine-bundle\\Doctrine\\Bundle\\DoctrineBundle/Resources/views/Collector/db.html.twig',
   'DoctrineBundle:Collector:explain.html.twig' => 'C:\\xampp\\htdocs\\MonopolyServer\\vendor\\doctrine\\doctrine-bundle\\Doctrine\\Bundle\\DoctrineBundle/Resources/views/Collector/explain.html.twig',
+  'CaosMonopolyBundle:Casilla:index.html.twig' => 'C:\\xampp\\htdocs\\MonopolyServer\\src\\Caos\\MonopolyBundle/Resources/views/Casilla/index.html.twig',
+  'CaosMonopolyBundle:Casilla:show.html.twig' => 'C:\\xampp\\htdocs\\MonopolyServer\\src\\Caos\\MonopolyBundle/Resources/views/Casilla/show.html.twig',
   'CaosMonopolyBundle:Jugador:edit.html.twig' => 'C:\\xampp\\htdocs\\MonopolyServer\\src\\Caos\\MonopolyBundle/Resources/views/Jugador/edit.html.twig',
   'CaosMonopolyBundle:Jugador:index.html.twig' => 'C:\\xampp\\htdocs\\MonopolyServer\\src\\Caos\\MonopolyBundle/Resources/views/Jugador/index.html.twig',
   'CaosMonopolyBundle:Jugador:new.html.twig' => 'C:\\xampp\\htdocs\\MonopolyServer\\src\\Caos\\MonopolyBundle/Resources/views/Jugador/new.html.twig',

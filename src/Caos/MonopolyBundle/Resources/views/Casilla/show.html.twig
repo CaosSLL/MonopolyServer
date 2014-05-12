@@ -1,0 +1,50 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Casilla</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ entity.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Numero</th>
+                <td>{{ entity.numero }}</td>
+            </tr>
+            <tr>
+                <th>Precio</th>
+                <td>{{ entity.precio }}</td>
+            </tr>
+            <tr>
+                <th>Precioalquiler</th>
+                <td>{{ entity.precioAlquiler }}</td>
+            </tr>
+            <tr>
+                <th>Preciocabania</th>
+                <td>{{ entity.precioCabania }}</td>
+            </tr>
+            <tr>
+                <th>Preciohipoteca</th>
+                <td>{{ entity.precioHipoteca }}</td>
+            </tr>
+            <tr>
+                <th>Tipo</th>
+                <td>{{ entity.tipo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('casilla') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}
