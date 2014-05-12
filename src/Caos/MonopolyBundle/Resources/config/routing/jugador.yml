@@ -1,0 +1,38 @@
+jugador:
+    pattern:  /
+    defaults: { _controller: "CaosMonopolyBundle:Jugador:index" }
+
+jugador_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CaosMonopolyBundle:Jugador:show" }
+    
+jugador_show_usuario:
+    pattern:  /{id}/show_usuario
+    defaults: { _controller: "CaosMonopolyBundle:Jugador:showUsuario" }
+    
+jugador_show_partida:
+    pattern:  /{id}/show_partida
+    defaults: { _controller: "CaosMonopolyBundle:Jugador:showPartida" }
+
+jugador_new:
+    pattern:  /new
+    defaults: { _controller: "CaosMonopolyBundle:Jugador:new" }
+
+jugador_create:
+    pattern:  /create
+    defaults: { _controller: "CaosMonopolyBundle:Jugador:create" }
+    requirements: { _method: post }
+
+jugador_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CaosMonopolyBundle:Jugador:edit" }
+
+jugador_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "CaosMonopolyBundle:Jugador:update" }
+    requirements: { _method: post|put }
+
+jugador_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CaosMonopolyBundle:Jugador:delete" }
+    requirements: { _method: post|delete }

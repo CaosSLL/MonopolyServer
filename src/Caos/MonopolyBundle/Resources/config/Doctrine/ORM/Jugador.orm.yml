@@ -1,0 +1,69 @@
+Jugador:
+    type: entity
+    table: jugador
+    indexes:
+        id_partida:
+            columns:
+                - id_partida
+        id_usuario:
+            columns:
+                - id_usuario
+        id_personaje:
+            columns:
+                - id_personaje
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        posicion:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+        dinero:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '1500'
+        carcel:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+    manyToOne:
+        idPartida:
+            targetEntity: Partida
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_partida:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idUsuario:
+            targetEntity: Usuario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_usuario:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idPersonaje:
+            targetEntity: Personaje
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_personaje:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

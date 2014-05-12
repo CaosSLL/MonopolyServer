@@ -1,0 +1,8 @@
+caos_monopoly:
+    resource: "@CaosMonopolyBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#acme_monopoly:
+#    resource: "@AcmeMonopolyBundle/Resources/config/routing.yml"
+#    prefix:   /
+

@@ -1,0 +1,50 @@
+PosesionTarjeta:
+    type: entity
+    table: posesion_tarjeta
+    indexes:
+        id_tarjeta:
+            columns:
+                - id_tarjeta
+        id_jugador:
+            columns:
+                - id_jugador
+        IDX_D343F601775CF17C:
+            columns:
+                - id_partida
+    id: {  }
+    fields:
+        beneficio:
+            type: string
+            nullable: false
+            length: 300
+            fixed: false
+            comment: ''
+    oneToOne:
+        idPartida:
+            targetEntity: Partida
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_partida:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idTarjeta:
+            targetEntity: Tarjeta
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_tarjeta:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idJugador:
+            targetEntity: Jugador
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_jugador:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

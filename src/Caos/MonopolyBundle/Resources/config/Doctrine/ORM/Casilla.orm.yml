@@ -1,0 +1,54 @@
+Casilla:
+    type: entity
+    table: casilla
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nombre:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        numero:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+        precio:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+        precioAlquiler:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: precio_alquiler
+        precioCabania:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: precio_cabania
+        precioHipoteca:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: precio_hipoteca
+        tipo:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

@@ -1,0 +1,7 @@
+parameters:
+#    caos_monopoly.example.class: Caos\MonopolyBundle\Example
+
+services:
+#    caos_monopoly.example:
+#        class: %caos_monopoly.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

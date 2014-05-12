@@ -1,0 +1,10 @@
+personaje:
+    pattern:  /
+    defaults: { _controller: "CaosMonopolyBundle:Personaje:index" }
+
+personaje_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CaosMonopolyBundle:Personaje:show" }
+
+
+

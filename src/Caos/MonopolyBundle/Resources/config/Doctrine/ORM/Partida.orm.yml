@@ -1,0 +1,40 @@
+Partida:
+    type: entity
+    table: partida
+    indexes:
+        id_jugador_turno:
+            columns:
+                - id_jugador_turno
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        fechaInicio:
+            type: date
+            nullable: false
+            comment: ''
+            column: fecha_inicio
+        boteComun:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+            column: bote_comun
+    manyToOne:
+        idJugadorTurno:
+            targetEntity: Jugador
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_jugador_turno:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

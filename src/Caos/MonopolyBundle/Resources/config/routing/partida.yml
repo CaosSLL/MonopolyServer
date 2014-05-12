@@ -1,0 +1,30 @@
+partida:
+    pattern:  /
+    defaults: { _controller: "CaosMonopolyBundle:Partida:index" }
+
+partida_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CaosMonopolyBundle:Partida:show" }
+
+partida_new:
+    pattern:  /new
+    defaults: { _controller: "CaosMonopolyBundle:Partida:new" }
+
+partida_create:
+    pattern:  /create
+    defaults: { _controller: "CaosMonopolyBundle:Partida:create" }
+    requirements: { _method: post }
+
+partida_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CaosMonopolyBundle:Partida:edit" }
+
+partida_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "CaosMonopolyBundle:Partida:update" }
+    requirements: { _method: post|put }
+
+partida_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CaosMonopolyBundle:Partida:delete" }
+    requirements: { _method: post|delete }
