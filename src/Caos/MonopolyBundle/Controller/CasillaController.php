@@ -24,7 +24,7 @@ class CasillaController extends Controller
 
         $entities = $em->getRepository('CaosMonopolyBundle:Casilla')->obtenerTodos();
 
-        return \Symfony\Component\HttpFoundation\JsonResponse($entities);
+        return new \Symfony\Component\HttpFoundation\JsonResponse($entities);
         
     }
 
@@ -36,14 +36,13 @@ class CasillaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('CaosMonopolyBundle:Casilla')->find($id);
+        $entity = $em->getRepository('CaosMonopolyBundle:Casilla')->obtenerPorId($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Casilla entity.');
         }
 
-        return $this->render('CaosMonopolyBundle:Casilla:show.html.twig', array(
-            'entity'      => $entity,
-        ));
+        return new \Symfony\Component\HttpFoundation\JsonResponse($entity[0]);
+        
     }
 }

@@ -112,7 +112,7 @@ class UsuarioController extends Controller
             return new \Symfony\Component\HttpFoundation\JsonResponse("");
         }
         
-        return new \Symfony\Component\HttpFoundation\JsonResponse($entity);
+        return new \Symfony\Component\HttpFoundation\JsonResponse($entity[0]);
         
     }
 

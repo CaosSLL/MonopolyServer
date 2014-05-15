@@ -19,9 +19,22 @@ class CasillaRepository extends EntityRepository
                 ->select("c")
                 ->from("CaosMonopolyBundle:Casilla","c")
                 ->getQuery()
-                ->getArray();
+                ->getArrayResult();
         
         return $casillas;
+        
+    }
+    
+    public function obtenerPorId($id){
+        
+        $casilla = $this->getEntityManager()->createQueryBuilder()
+                ->select("c")
+                ->from("CaosMonopolyBundle:Casilla","c")
+                ->where("c.id = $id")
+                ->getQuery()
+                ->getArrayResult();
+        
+        return $casilla;
         
     }
     

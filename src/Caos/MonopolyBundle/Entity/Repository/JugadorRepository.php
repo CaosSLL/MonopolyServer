@@ -66,7 +66,7 @@ class JugadorRepository extends EntityRepository {
                 ->join("j.usuario","usu")
                 ->where("j.partida = ".$id)
                 ->getQuery()
-                ->getResult();
+                ->getArrayResult();
 
         return $jugadores;
         

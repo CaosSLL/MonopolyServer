@@ -99,7 +99,7 @@ class PartidaController extends Controller
             throw $this->createNotFoundException('Unable to find Partida entity.');
         }
 
-        return new \Symfony\Component\HttpFoundation\JsonResponse($entity);
+        return new \Symfony\Component\HttpFoundation\JsonResponse($entity[0]);
         
     }
 
