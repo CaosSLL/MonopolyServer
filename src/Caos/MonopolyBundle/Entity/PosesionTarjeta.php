@@ -7,11 +7,20 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PosesionTarjeta
  *
- * @ORM\Table(name="posesion_tarjeta", indexes={@ORM\Index(name="id_tarjeta", columns={"id_tarjeta"}), @ORM\Index(name="id_jugador", columns={"id_jugador"}), @ORM\Index(name="IDX_D343F601775CF17C", columns={"id_partida"})})
+ * @ORM\Table(name="posesion_tarjeta", indexes={@ORM\Index(name="id_tarjeta", columns={"id_tarjeta"}), @ORM\Index(name="id_jugador", columns={"id_jugador"}), @ORM\Index(name="id_partida", columns={"id_partida"})})
  * @ORM\Entity
  */
 class PosesionTarjeta
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+    
     /**
      * @var string
      *
@@ -22,9 +31,7 @@ class PosesionTarjeta
     /**
      * @var \Partida
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Partida")
+     * @ORM\ManyToOne(targetEntity="Partida")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_partida", referencedColumnName="id")
      * })
@@ -34,9 +41,7 @@ class PosesionTarjeta
     /**
      * @var \Tarjeta
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Tarjeta")
+     * @ORM\ManyToOne(targetEntity="Tarjeta")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_tarjeta", referencedColumnName="id")
      * })
@@ -46,9 +51,7 @@ class PosesionTarjeta
     /**
      * @var \Jugador
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Jugador")
+     * @ORM\ManyToOne(targetEntity="Jugador")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_jugador", referencedColumnName="id")
      * })
@@ -57,6 +60,16 @@ class PosesionTarjeta
 
 
 
+    /**
+     * Get id
+     *
+     * @return string 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    
     /**
      * Set beneficio
      *

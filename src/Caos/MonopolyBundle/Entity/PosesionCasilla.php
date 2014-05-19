@@ -7,11 +7,20 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PosesionCasilla
  *
- * @ORM\Table(name="posesion_casilla", indexes={@ORM\Index(name="id_jugador", columns={"id_jugador"}), @ORM\Index(name="id_casilla", columns={"id_casilla"}), @ORM\Index(name="IDX_D32571C9775CF17C", columns={"id_partida"})})
+ * @ORM\Table(name="posesion_casilla", indexes={@ORM\Index(name="id_jugador", columns={"id_jugador"}), @ORM\Index(name="id_casilla", columns={"id_casilla"}), @ORM\Index(name="id_partida", columns={"id_partida"})})
  * @ORM\Entity
  */
 class PosesionCasilla
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+    
     /**
      * @var integer
      *
@@ -29,9 +38,7 @@ class PosesionCasilla
     /**
      * @var \Partida
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Partida")
+     * @ORM\ManyToOne(targetEntity="Partida")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_partida", referencedColumnName="id")
      * })
@@ -43,7 +50,7 @@ class PosesionCasilla
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Jugador")
+     * @ORM\ManyToOne(targetEntity="Jugador")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_jugador", referencedColumnName="id")
      * })
@@ -53,9 +60,7 @@ class PosesionCasilla
     /**
      * @var \Casilla
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Casilla")
+     * @ORM\ManyToOne(targetEntity="Casilla")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_casilla", referencedColumnName="id")
      * })
@@ -63,7 +68,16 @@ class PosesionCasilla
     private $idCasilla;
 
 
-
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    
     /**
      * Set numCabania
      *
