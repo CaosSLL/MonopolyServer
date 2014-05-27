@@ -61,7 +61,7 @@ class UsuarioController extends Controller
         return $this->render('CaosMonopolyBundle:Usuario:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        ));
+        ));        
     }
 
     /**
@@ -228,4 +228,13 @@ class UsuarioController extends Controller
             ->getForm()
         ;
     }
+    
+    
+    public function crearUsuarioAction() {
+        
+        $usuario = $_POST["usuario"];
+        echo $usuario;
+        
+    }
+        
 }
