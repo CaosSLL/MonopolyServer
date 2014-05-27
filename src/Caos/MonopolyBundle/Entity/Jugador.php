@@ -15,7 +15,7 @@ class Jugador
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -33,44 +33,44 @@ class Jugador
      *
      * @ORM\Column(name="dinero", type="integer", nullable=false)
      */
-    private $dinero = '1500';
+    private $dinero;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="carcel", type="integer", nullable=false)
      */
-    private $carcel = '0';
+    private $carcel;
 
     /**
-     * @var \Partida
+     * @var \Caos\MonopolyBundle\Entity\Partida
      *
-     * @ORM\ManyToOne(targetEntity="Partida")
+     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Partida")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_partida", referencedColumnName="id")
      * })
      */
-    private $partida;
+    private $idPartida;
 
     /**
-     * @var \Usuario
+     * @var \Caos\MonopolyBundle\Entity\Usuario
      *
-     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_usuario", referencedColumnName="id")
      * })
      */
-    private $usuario;
+    private $idUsuario;
 
     /**
-     * @var \Personaje
+     * @var \Caos\MonopolyBundle\Entity\Personaje
      *
-     * @ORM\ManyToOne(targetEntity="Personaje")
+     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Personaje")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_personaje", referencedColumnName="id")
      * })
      */
-    private $personaje;
+    private $idPersonaje;
 
 
 
@@ -154,71 +154,71 @@ class Jugador
     }
 
     /**
-     * Set partida
+     * Set idPartida
      *
-     * @param \Caos\MonopolyBundle\Entity\Partida $partida
+     * @param \Caos\MonopolyBundle\Entity\Partida $idPartida
      * @return Jugador
      */
-    public function setPartida(\Caos\MonopolyBundle\Entity\Partida $partida = null)
+    public function setIdPartida(\Caos\MonopolyBundle\Entity\Partida $idPartida = null)
     {
-        $this->partida = $partida;
+        $this->idPartida = $idPartida;
 
         return $this;
     }
 
     /**
-     * Get partida
+     * Get idPartida
      *
      * @return \Caos\MonopolyBundle\Entity\Partida 
      */
-    public function getPartida()
+    public function getIdPartida()
     {
-        return $this->partida;
+        return $this->idPartida;
     }
 
     /**
-     * Set usuario
+     * Set idUsuario
      *
-     * @param \Caos\MonopolyBundle\Entity\Usuario $usuario
+     * @param \Caos\MonopolyBundle\Entity\Usuario $idUsuario
      * @return Jugador
      */
-    public function setUsuario(\Caos\MonopolyBundle\Entity\Usuario $usuario = null)
+    public function setIdUsuario(\Caos\MonopolyBundle\Entity\Usuario $idUsuario = null)
     {
-        $this->usuario = $usuario;
+        $this->idUsuario = $idUsuario;
 
         return $this;
     }
 
     /**
-     * Get usuario
+     * Get idUsuario
      *
      * @return \Caos\MonopolyBundle\Entity\Usuario 
      */
-    public function getUsuario()
+    public function getIdUsuario()
     {
-        return $this->usuario;
+        return $this->idUsuario;
     }
 
     /**
-     * Set personaje
+     * Set idPersonaje
      *
-     * @param \Caos\MonopolyBundle\Entity\Personaje $personaje
+     * @param \Caos\MonopolyBundle\Entity\Personaje $idPersonaje
      * @return Jugador
      */
-    public function setPersonaje(\Caos\MonopolyBundle\Entity\Personaje $personaje = null)
-    {   
-        $this->personaje = $personaje;
+    public function setIdPersonaje(\Caos\MonopolyBundle\Entity\Personaje $idPersonaje = null)
+    {
+        $this->idPersonaje = $idPersonaje;
 
         return $this;
     }
 
     /**
-     * Get personaje
+     * Get idPersonaje
      *
      * @return \Caos\MonopolyBundle\Entity\Personaje 
      */
-    public function getPersonaje()
+    public function getIdPersonaje()
     {
-        return $this->personaje;
+        return $this->idPersonaje;
     }
 }

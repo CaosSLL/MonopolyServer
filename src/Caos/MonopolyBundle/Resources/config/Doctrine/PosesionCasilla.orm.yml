@@ -1,0 +1,63 @@
+Caos\MonopolyBundle\Entity\PosesionCasilla:
+    type: entity
+    table: posesion_casilla
+    indexes:
+        id_jugador:
+            columns:
+                - id_jugador
+        id_casilla:
+            columns:
+                - id_casilla
+        id_partida:
+            columns:
+                - id_partida
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        numCabania:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: num_cabania
+        hipotecada:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+    manyToOne:
+        idPartida:
+            targetEntity: Partida
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_partida:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idJugador:
+            targetEntity: Jugador
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_jugador:
+                    referencedColumnName: id
+            orphanRemoval: false
+        idCasilla:
+            targetEntity: Casilla
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_casilla:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

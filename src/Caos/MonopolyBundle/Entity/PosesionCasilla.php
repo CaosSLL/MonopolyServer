@@ -15,12 +15,12 @@ class PosesionCasilla
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-    
+
     /**
      * @var integer
      *
@@ -36,9 +36,9 @@ class PosesionCasilla
     private $hipotecada;
 
     /**
-     * @var \Partida
+     * @var \Caos\MonopolyBundle\Entity\Partida
      *
-     * @ORM\ManyToOne(targetEntity="Partida")
+     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Partida")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_partida", referencedColumnName="id")
      * })
@@ -46,11 +46,9 @@ class PosesionCasilla
     private $idPartida;
 
     /**
-     * @var \Jugador
+     * @var \Caos\MonopolyBundle\Entity\Jugador
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\ManyToOne(targetEntity="Jugador")
+     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Jugador")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_jugador", referencedColumnName="id")
      * })
@@ -58,14 +56,15 @@ class PosesionCasilla
     private $idJugador;
 
     /**
-     * @var \Casilla
+     * @var \Caos\MonopolyBundle\Entity\Casilla
      *
-     * @ORM\ManyToOne(targetEntity="Casilla")
+     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Casilla")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_casilla", referencedColumnName="id")
      * })
      */
     private $idCasilla;
+
 
 
     /**
@@ -77,7 +76,7 @@ class PosesionCasilla
     {
         return $this->id;
     }
-    
+
     /**
      * Set numCabania
      *
@@ -127,10 +126,10 @@ class PosesionCasilla
     /**
      * Set idPartida
      *
-     * @param \Acme\MonopolyBundle\Entity\Partida $idPartida
+     * @param \Caos\MonopolyBundle\Entity\Partida $idPartida
      * @return PosesionCasilla
      */
-    public function setIdPartida(\Acme\MonopolyBundle\Entity\Partida $idPartida)
+    public function setIdPartida(\Caos\MonopolyBundle\Entity\Partida $idPartida = null)
     {
         $this->idPartida = $idPartida;
 
@@ -140,7 +139,7 @@ class PosesionCasilla
     /**
      * Get idPartida
      *
-     * @return \Acme\MonopolyBundle\Entity\Partida 
+     * @return \Caos\MonopolyBundle\Entity\Partida 
      */
     public function getIdPartida()
     {
@@ -150,10 +149,10 @@ class PosesionCasilla
     /**
      * Set idJugador
      *
-     * @param \Acme\MonopolyBundle\Entity\Jugador $idJugador
+     * @param \Caos\MonopolyBundle\Entity\Jugador $idJugador
      * @return PosesionCasilla
      */
-    public function setIdJugador(\Acme\MonopolyBundle\Entity\Jugador $idJugador)
+    public function setIdJugador(\Caos\MonopolyBundle\Entity\Jugador $idJugador = null)
     {
         $this->idJugador = $idJugador;
 
@@ -163,7 +162,7 @@ class PosesionCasilla
     /**
      * Get idJugador
      *
-     * @return \Acme\MonopolyBundle\Entity\Jugador 
+     * @return \Caos\MonopolyBundle\Entity\Jugador 
      */
     public function getIdJugador()
     {
@@ -173,10 +172,10 @@ class PosesionCasilla
     /**
      * Set idCasilla
      *
-     * @param \Acme\MonopolyBundle\Entity\Casilla $idCasilla
+     * @param \Caos\MonopolyBundle\Entity\Casilla $idCasilla
      * @return PosesionCasilla
      */
-    public function setIdCasilla(\Acme\MonopolyBundle\Entity\Casilla $idCasilla)
+    public function setIdCasilla(\Caos\MonopolyBundle\Entity\Casilla $idCasilla = null)
     {
         $this->idCasilla = $idCasilla;
 
@@ -186,7 +185,7 @@ class PosesionCasilla
     /**
      * Get idCasilla
      *
-     * @return \Acme\MonopolyBundle\Entity\Casilla 
+     * @return \Caos\MonopolyBundle\Entity\Casilla 
      */
     public function getIdCasilla()
     {

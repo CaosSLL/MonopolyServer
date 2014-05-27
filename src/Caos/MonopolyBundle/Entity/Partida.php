@@ -15,7 +15,7 @@ class Partida
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -33,12 +33,12 @@ class Partida
      *
      * @ORM\Column(name="bote_comun", type="integer", nullable=false)
      */
-    private $boteComun = '0';
+    private $boteComun;
 
     /**
-     * @var \Jugador
+     * @var \Caos\MonopolyBundle\Entity\Jugador
      *
-     * @ORM\ManyToOne(targetEntity="Jugador")
+     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Jugador")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_jugador_turno", referencedColumnName="id")
      * })

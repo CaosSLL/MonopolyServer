@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * PosesionTarjeta
  *
- * @ORM\Table(name="posesion_tarjeta", indexes={@ORM\Index(name="id_tarjeta", columns={"id_tarjeta"}), @ORM\Index(name="id_jugador", columns={"id_jugador"}), @ORM\Index(name="id_partida", columns={"id_partida"})})
+ * @ORM\Table(name="posesion_tarjeta", indexes={@ORM\Index(name="id_jugador", columns={"id_jugador"}), @ORM\Index(name="id_tarjeta", columns={"id_tarjeta"}), @ORM\Index(name="id_partida", columns={"id_partida"})})
  * @ORM\Entity
  */
 class PosesionTarjeta
@@ -15,12 +15,12 @@ class PosesionTarjeta
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-    
+
     /**
      * @var string
      *
@@ -29,9 +29,9 @@ class PosesionTarjeta
     private $beneficio;
 
     /**
-     * @var \Partida
+     * @var \Caos\MonopolyBundle\Entity\Partida
      *
-     * @ORM\ManyToOne(targetEntity="Partida")
+     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Partida")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_partida", referencedColumnName="id")
      * })
@@ -39,9 +39,9 @@ class PosesionTarjeta
     private $idPartida;
 
     /**
-     * @var \Tarjeta
+     * @var \Caos\MonopolyBundle\Entity\Tarjeta
      *
-     * @ORM\ManyToOne(targetEntity="Tarjeta")
+     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Tarjeta")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_tarjeta", referencedColumnName="id")
      * })
@@ -49,9 +49,9 @@ class PosesionTarjeta
     private $idTarjeta;
 
     /**
-     * @var \Jugador
+     * @var \Caos\MonopolyBundle\Entity\Jugador
      *
-     * @ORM\ManyToOne(targetEntity="Jugador")
+     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Jugador")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_jugador", referencedColumnName="id")
      * })
@@ -63,13 +63,13 @@ class PosesionTarjeta
     /**
      * Get id
      *
-     * @return string 
+     * @return integer 
      */
     public function getId()
     {
         return $this->id;
     }
-    
+
     /**
      * Set beneficio
      *
@@ -96,10 +96,10 @@ class PosesionTarjeta
     /**
      * Set idPartida
      *
-     * @param \Acme\MonopolyBundle\Entity\Partida $idPartida
+     * @param \Caos\MonopolyBundle\Entity\Partida $idPartida
      * @return PosesionTarjeta
      */
-    public function setIdPartida(\Acme\MonopolyBundle\Entity\Partida $idPartida)
+    public function setIdPartida(\Caos\MonopolyBundle\Entity\Partida $idPartida = null)
     {
         $this->idPartida = $idPartida;
 
@@ -109,7 +109,7 @@ class PosesionTarjeta
     /**
      * Get idPartida
      *
-     * @return \Acme\MonopolyBundle\Entity\Partida 
+     * @return \Caos\MonopolyBundle\Entity\Partida 
      */
     public function getIdPartida()
     {
@@ -119,10 +119,10 @@ class PosesionTarjeta
     /**
      * Set idTarjeta
      *
-     * @param \Acme\MonopolyBundle\Entity\Tarjeta $idTarjeta
+     * @param \Caos\MonopolyBundle\Entity\Tarjeta $idTarjeta
      * @return PosesionTarjeta
      */
-    public function setIdTarjeta(\Acme\MonopolyBundle\Entity\Tarjeta $idTarjeta)
+    public function setIdTarjeta(\Caos\MonopolyBundle\Entity\Tarjeta $idTarjeta = null)
     {
         $this->idTarjeta = $idTarjeta;
 
@@ -132,7 +132,7 @@ class PosesionTarjeta
     /**
      * Get idTarjeta
      *
-     * @return \Acme\MonopolyBundle\Entity\Tarjeta 
+     * @return \Caos\MonopolyBundle\Entity\Tarjeta 
      */
     public function getIdTarjeta()
     {
@@ -142,10 +142,10 @@ class PosesionTarjeta
     /**
      * Set idJugador
      *
-     * @param \Acme\MonopolyBundle\Entity\Jugador $idJugador
+     * @param \Caos\MonopolyBundle\Entity\Jugador $idJugador
      * @return PosesionTarjeta
      */
-    public function setIdJugador(\Acme\MonopolyBundle\Entity\Jugador $idJugador)
+    public function setIdJugador(\Caos\MonopolyBundle\Entity\Jugador $idJugador = null)
     {
         $this->idJugador = $idJugador;
 
@@ -155,7 +155,7 @@ class PosesionTarjeta
     /**
      * Get idJugador
      *
-     * @return \Acme\MonopolyBundle\Entity\Jugador 
+     * @return \Caos\MonopolyBundle\Entity\Jugador 
      */
     public function getIdJugador()
     {
