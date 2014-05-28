@@ -230,11 +230,18 @@ class UsuarioController extends Controller
     }
     
     
-    public function crearUsuarioAction() {
-        
-        $usuario = $_POST["usuario"];
-        echo $usuario;
-        
+    public function crearUsuarioAction(Request $request) {
+        // Recojo los datos 
+        $nombre = $request->get("usuario");
+        $em = $this->getDoctrine()->getManager();
+        $usuario = $em->getRepository("CaosMonopolyBundle:UsuarioRepository")->obtenerPorNombre($nombre);
+        if($usuario) {
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array("error" => "El nombre de usuario ya existe"));
+        } else {
+            $nuevo = new Usuario();
+            $nuevo->setPassword(md5());
+            return new \Symfony\Component\HttpFoundation\JsonResponse($usuario);        
+        }
     }
         
 }
