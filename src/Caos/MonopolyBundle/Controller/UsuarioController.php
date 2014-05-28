@@ -233,14 +233,24 @@ class UsuarioController extends Controller
     public function crearUsuarioAction(Request $request) {
         // Recojo los datos 
         $nombre = $request->get("usuario");
+        $contraseña = $request->get("contraseña");
+        $email = $request->get("email");
+        
+        // Comprobamos si el nombre de usuario ya está en la BD
         $em = $this->getDoctrine()->getManager();
-        $usuario = $em->getRepository("CaosMonopolyBundle:UsuarioRepository")->obtenerPorNombre($nombre);
-        if($usuario) {
+        $usuario = $em->getRepository("CaosMonopolyBundle:Usuario")->obtenerPorNombre($nombre);
+                
+        if($usuario) { // si el usuario ya existe devolvemos un mensaje de error
             return new \Symfony\Component\HttpFoundation\JsonResponse(array("error" => "El nombre de usuario ya existe"));
-        } else {
+            
+        } else { // si el usuario no existe creamos el usuario en la BD y mandamos un mensaje
             $nuevo = new Usuario();
-            $nuevo->setPassword(md5());
-            return new \Symfony\Component\HttpFoundation\JsonResponse($usuario);        
+            $nuevo->setNombre($nombre);
+            $nuevo->setPassword(md5($contraseña));
+            $nuevo->setEmail($email);
+            $nuevo->setRol("ROLE_USER");
+            $em->persist($nuevo);
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array("msg" => "El usuario se ha creado con éxito"));        
         }
     }
         
