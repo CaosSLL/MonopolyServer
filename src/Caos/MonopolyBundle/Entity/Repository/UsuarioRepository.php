@@ -43,7 +43,7 @@ class UsuarioRepository extends EntityRepository
         $usuario = $this->getEntityManager()->createQueryBuilder()
                 ->select("u")
                 ->from("CaosMonopolyBundle:Usuario","u")
-                ->where("u.nombre = ".$nombre)
+                ->where("u.nombre = '".$nombre."'")
                 ->getQuery()
                 ->getArrayResult();
         
@@ -56,7 +56,7 @@ class UsuarioRepository extends EntityRepository
         $usuario = $this->getEntityManager()->createQueryBuilder()
                 ->select("u")
                 ->from("CaosMonopolyBundle:Usuario","u")
-                ->where("u.email = ".$email)
+                ->where("u.email = '".$email."'")
                 ->getQuery()
                 ->getArrayResult();
         

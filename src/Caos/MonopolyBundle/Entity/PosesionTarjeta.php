@@ -8,14 +8,14 @@ use Doctrine\ORM\Mapping as ORM;
  * PosesionTarjeta
  *
  * @ORM\Table(name="posesion_tarjeta", indexes={@ORM\Index(name="id_jugador", columns={"id_jugador"}), @ORM\Index(name="id_tarjeta", columns={"id_tarjeta"}), @ORM\Index(name="id_partida", columns={"id_partida"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Caos\MonopolyBundle\Entity\Repository\PosesionTarjetaRepository")
  */
 class PosesionTarjeta
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -29,9 +29,9 @@ class PosesionTarjeta
     private $beneficio;
 
     /**
-     * @var \Caos\MonopolyBundle\Entity\Partida
+     * @var \Partida
      *
-     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Partida")
+     * @ORM\ManyToOne(targetEntity="Partida")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_partida", referencedColumnName="id")
      * })
@@ -39,9 +39,9 @@ class PosesionTarjeta
     private $idPartida;
 
     /**
-     * @var \Caos\MonopolyBundle\Entity\Tarjeta
+     * @var \Tarjeta
      *
-     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Tarjeta")
+     * @ORM\ManyToOne(targetEntity="Tarjeta")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_tarjeta", referencedColumnName="id")
      * })
@@ -49,9 +49,9 @@ class PosesionTarjeta
     private $idTarjeta;
 
     /**
-     * @var \Caos\MonopolyBundle\Entity\Jugador
+     * @var \Jugador
      *
-     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Jugador")
+     * @ORM\ManyToOne(targetEntity="Jugador")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_jugador", referencedColumnName="id")
      * })

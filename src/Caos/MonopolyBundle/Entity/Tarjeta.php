@@ -8,14 +8,14 @@ use Doctrine\ORM\Mapping as ORM;
  * Tarjeta
  *
  * @ORM\Table(name="tarjeta")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Caos\MonopolyBundle\Entity\Repository\TarjetaRepository")
  */
 class Tarjeta
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */

@@ -15,7 +15,7 @@ class Usuario
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -47,21 +47,21 @@ class Usuario
      *
      * @ORM\Column(name="partidas_jugadas", type="integer", nullable=false)
      */
-    private $partidasJugadas;
+    private $partidasJugadas = '0';
 
     /**
      * @var integer
      *
      * @ORM\Column(name="partidas_ganadas", type="integer", nullable=false)
      */
-    private $partidasGanadas;
+    private $partidasGanadas = '0';
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="estado", type="boolean", nullable=false)
      */
-    private $estado;
+    private $estado = '0';
 
     /**
      * @var string

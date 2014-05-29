@@ -27,6 +27,12 @@ Partida:
             comment: ''
             default: '0'
             column: bote_comun
+        token:
+            type: string
+            length: 32
+            nullable: false
+            comment: ''
+            column: token
     manyToOne:
         idJugadorTurno:
             targetEntity: Jugador

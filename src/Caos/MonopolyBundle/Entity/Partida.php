@@ -15,7 +15,7 @@ class Partida
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -33,12 +33,19 @@ class Partida
      *
      * @ORM\Column(name="bote_comun", type="integer", nullable=false)
      */
-    private $boteComun;
+    private $boteComun = '0';
+    
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="token", type="string", length=32, nullable=false)
+     */
+    private $token;
 
     /**
-     * @var \Caos\MonopolyBundle\Entity\Jugador
+     * @var \Jugador
      *
-     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Jugador")
+     * @ORM\ManyToOne(targetEntity="Jugador")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_jugador_turno", referencedColumnName="id")
      * })
@@ -125,4 +132,27 @@ class Partida
     {
         return $this->idJugadorTurno;
     }
+    
+    /**
+     * Get token
+     * 
+     * @return string
+     */
+    public function getToken() {
+        return $this->token;
+    }
+
+    /**
+     * Set token
+     * 
+     * @param string $token
+     * @return \Caos\MonopolyBundle\Entity\Partida
+     */
+    public function setToken($token) {
+        $this->token = $token;
+        
+        return $this;
+    }
+
+
 }

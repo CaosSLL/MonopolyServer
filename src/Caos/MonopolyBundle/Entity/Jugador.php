@@ -15,7 +15,7 @@ class Jugador
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -33,19 +33,19 @@ class Jugador
      *
      * @ORM\Column(name="dinero", type="integer", nullable=false)
      */
-    private $dinero;
+    private $dinero = '1500';
 
     /**
      * @var integer
      *
      * @ORM\Column(name="carcel", type="integer", nullable=false)
      */
-    private $carcel;
+    private $carcel = '0';
 
     /**
-     * @var \Caos\MonopolyBundle\Entity\Partida
+     * @var \Partida
      *
-     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Partida")
+     * @ORM\ManyToOne(targetEntity="Partida")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_partida", referencedColumnName="id")
      * })
@@ -53,9 +53,9 @@ class Jugador
     private $idPartida;
 
     /**
-     * @var \Caos\MonopolyBundle\Entity\Usuario
+     * @var \Usuario
      *
-     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Usuario")
+     * @ORM\ManyToOne(targetEntity="Usuario")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_usuario", referencedColumnName="id")
      * })
@@ -63,9 +63,9 @@ class Jugador
     private $idUsuario;
 
     /**
-     * @var \Caos\MonopolyBundle\Entity\Personaje
+     * @var \Personaje
      *
-     * @ORM\ManyToOne(targetEntity="Caos\MonopolyBundle\Entity\Personaje")
+     * @ORM\ManyToOne(targetEntity="Personaje")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_personaje", referencedColumnName="id")
      * })

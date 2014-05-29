@@ -229,28 +229,52 @@ class UsuarioController extends Controller
         ;
     }
     
-    
+    /**
+     * Método propio que se encarga de crear un nuevo usuario en la BD
+     *      Si el nombre de usuario ya se encuentra en la BD devuelve un mensaje de error
+     *      Si el nombre de usuario no existe, se crea el nuevo usuario y se le crea una sesión
+     * 
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function crearUsuarioAction(Request $request) {
         // Recojo los datos 
         $nombre = $request->get("usuario");
-        $contraseña = $request->get("contraseña");
+        $password = $request->get("password");
         $email = $request->get("email");
         
         // Comprobamos si el nombre de usuario ya está en la BD
         $em = $this->getDoctrine()->getManager();
         $usuario = $em->getRepository("CaosMonopolyBundle:Usuario")->obtenerPorNombre($nombre);
                 
-        if($usuario) { // si el usuario ya existe devolvemos un mensaje de error
-            return new \Symfony\Component\HttpFoundation\JsonResponse(array("error" => "El nombre de usuario ya existe"));
+        if($usuario) { 
+            // Si el usuario ya existe devolvemos un mensaje de error
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array("tipo" => "error", "error" => "El nombre de usuario ya existe"));
             
-        } else { // si el usuario no existe creamos el usuario en la BD y mandamos un mensaje
+        } else { 
+            // Creamos un nuevo objeto del tipo "Caos\MonopolyBundle\Usuario"
             $nuevo = new Usuario();
+            
+            // Le damos todos los datos que ha pasado el cliente por el formulario
             $nuevo->setNombre($nombre);
-            $nuevo->setPassword(md5($contraseña));
+            $nuevo->setPassword(md5($password));
             $nuevo->setEmail($email);
+            $nuevo->setEstado(true);
             $nuevo->setRol("ROLE_USER");
+            
+            // Persistimos el objeto en la BD (ES NEESARIO AMBOS MÉTODOS)
             $em->persist($nuevo);
-            return new \Symfony\Component\HttpFoundation\JsonResponse(array("msg" => "El usuario se ha creado con éxito"));        
+            $em->flush();
+            
+            // Iniciar una sesión para el usuario
+            session_destroy();
+            session_start();
+            
+            $_SESSION["id"] = $nuevo->getId();
+            $_SESSION["user"] = $nuevo->getNombre();
+            
+            // Devolvemos un mensaje al cliente
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array("tipo" => "msg", "msg" => "El usuario se ha creado con éxito"));        
         }
     }
         
