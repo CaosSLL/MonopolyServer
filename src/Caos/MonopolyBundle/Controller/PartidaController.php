@@ -4,7 +4,6 @@ namespace Caos\MonopolyBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Caos\MonopolyBundle\Entity\Partida;
 use Caos\MonopolyBundle\Form\PartidaType;
 
@@ -12,27 +11,25 @@ use Caos\MonopolyBundle\Form\PartidaType;
  * Partida controller.
  *
  */
-class PartidaController extends Controller
-{
+class PartidaController extends Controller {
 
     /**
      * Lists all Partida entities.
      *
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('CaosMonopolyBundle:Partida')->obtenerTodos();
 
         return new \Symfony\Component\HttpFoundation\JsonResponse($entities);
     }
+
     /**
      * Creates a new Partida entity.
      *
      */
-    public function createAction(Request $request)
-    {
+    public function createAction(Request $request) {
         $entity = new Partida();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
@@ -46,20 +43,19 @@ class PartidaController extends Controller
         }
 
         return $this->render('CaosMonopolyBundle:Partida:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
+                    'entity' => $entity,
+                    'form' => $form->createView(),
         ));
     }
 
     /**
-    * Creates a form to create a Partida entity.
-    *
-    * @param Partida $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createCreateForm(Partida $entity)
-    {
+     * Creates a form to create a Partida entity.
+     *
+     * @param Partida $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createCreateForm(Partida $entity) {
         $form = $this->createForm(new PartidaType(), $entity, array(
             'action' => $this->generateUrl('partida_create'),
             'method' => 'POST',
@@ -74,14 +70,13 @@ class PartidaController extends Controller
      * Displays a form to create a new Partida entity.
      *
      */
-    public function newAction()
-    {
+    public function newAction() {
         $entity = new Partida();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('CaosMonopolyBundle:Partida:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
+                    'entity' => $entity,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -89,8 +84,7 @@ class PartidaController extends Controller
      * Finds and displays a Partida entity.
      *
      */
-    public function showAction($id)
-    {
+    public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('CaosMonopolyBundle:Partida')->obtenerPorId($id);
@@ -100,15 +94,13 @@ class PartidaController extends Controller
         }
 
         return new \Symfony\Component\HttpFoundation\JsonResponse($entity[0]);
-        
     }
 
     /**
      * Displays a form to edit an existing Partida entity.
      *
      */
-    public function editAction($id)
-    {
+    public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('CaosMonopolyBundle:Partida')->find($id);
@@ -121,21 +113,20 @@ class PartidaController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('CaosMonopolyBundle:Partida:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'entity' => $entity,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-    * Creates a form to edit a Partida entity.
-    *
-    * @param Partida $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Partida $entity)
-    {
+     * Creates a form to edit a Partida entity.
+     *
+     * @param Partida $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createEditForm(Partida $entity) {
         $form = $this->createForm(new PartidaType(), $entity, array(
             'action' => $this->generateUrl('partida_update', array('id' => $entity->getId())),
             'method' => 'PUT',
@@ -145,12 +136,12 @@ class PartidaController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Partida entity.
      *
      */
-    public function updateAction(Request $request, $id)
-    {
+    public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('CaosMonopolyBundle:Partida')->find($id);
@@ -170,17 +161,17 @@ class PartidaController extends Controller
         }
 
         return $this->render('CaosMonopolyBundle:Partida:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'entity' => $entity,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a Partida entity.
      *
      */
-    public function deleteAction(Request $request, $id)
-    {
+    public function deleteAction(Request $request, $id) {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
@@ -206,13 +197,49 @@ class PartidaController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
-    {
+    private function createDeleteForm($id) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('partida_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
+                        ->setAction($this->generateUrl('partida_delete', array('id' => $id)))
+                        ->setMethod('DELETE')
+                        ->add('submit', 'submit', array('label' => 'Delete'))
+                        ->getForm()
         ;
     }
+
+    public function crearPartidaAction(Request $request) {
+
+        $datos = array();
+        $datos["exito"] = true;
+
+        $datos["usuarios"] = $request->get("usuarios");
+//        $datos["personaje"] = $request->get("personaje");
+        $datos["token"] = $request->get("token");
+        $datos["fecha"] = $request->get("fecha");
+
+        var_dump($datos);
+
+        $em = $this->getDoctrine()->getManager();
+
+        $partida = new Partida();
+        $partida->setBoteComun(0);
+        $partida->getFechaInicio($datos["fecha"]);
+//        $em->persist($partida);
+//        $em->flush();
+
+        foreach ($datos["usuarios"] as $idUsuario) {
+//            $usuario = $em->getRepository("CaosMonopolyBundle:Usuario")->find($idUsuario);
+//            $personaje = $em->getRepository("CaosMonopolyBundle:Personaje")->find($idUsuario);
+//            $jugador = new \Caos\MonopolyBundle\Entity\Jugador();
+//            $jugador->setPartida($partida);
+//            $jugador->setPersonaje($personaje);
+//            $jugador->setUsuario($usuario);
+//            $jugador->setDinero(1111);
+//            $jugador->setPosicion(0);
+//            $em->persist($jugador);
+//            $em->flush();
+        }
+
+        return new \Symfony\Component\HttpFoundation\JsonResponse($datos);
+    }
+
 }

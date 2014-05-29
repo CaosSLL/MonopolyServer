@@ -228,4 +228,15 @@ class UsuarioController extends Controller
             ->getForm()
         ;
     }
+    
+    public function conectadosAction(){
+        
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('CaosMonopolyBundle:Usuario')->obtenerUsuariosConectados();
+
+        return new \Symfony\Component\HttpFoundation\JsonResponse($entities);
+        
+    }
+    
 }

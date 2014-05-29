@@ -28,3 +28,7 @@ partida_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "CaosMonopolyBundle:Partida:delete" }
     requirements: { _method: post|delete }
+    
+partida_crearPartida:
+    pattern: /crearPartida
+    defaults: { _controller: "CaosMonopolyBundle:Partida:crearPartida" }

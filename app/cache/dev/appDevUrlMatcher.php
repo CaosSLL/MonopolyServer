@@ -208,6 +208,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\UsuarioController::loginAction',  '_route' => 'usuario_login',);
             }
 
+            // usuario_conectados
+            if ($pathinfo === '/usuario/conectados') {
+                return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\UsuarioController::conectadosAction',  '_route' => 'usuario_conectados',);
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/p')) {
@@ -285,6 +290,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'partida_delete')), array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\PartidaController::deleteAction',));
                 }
                 not_partida_delete:
+
+                // partida_crearPartida
+                if ($pathinfo === '/partida/crearPartida') {
+                    return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\PartidaController::crearPartidaAction',  '_route' => 'partida_crearPartida',);
+                }
 
             }
 
