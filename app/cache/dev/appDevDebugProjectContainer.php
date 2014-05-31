@@ -3421,7 +3421,7 @@ class appDevDebugProjectContainer extends Container
             'kernel.root_dir' => 'C:/xampp/htdocs/MonopolyServer/app',
             'kernel.environment' => 'dev',
             'kernel.debug' => true,
-            'kernel.name' => 'ap_',
+            'kernel.name' => 'app',
             'kernel.cache_dir' => 'C:/xampp/htdocs/MonopolyServer/app/cache/dev',
             'kernel.logs_dir' => 'C:/xampp/htdocs/MonopolyServer/app/logs',
             'kernel.bundles' => array(

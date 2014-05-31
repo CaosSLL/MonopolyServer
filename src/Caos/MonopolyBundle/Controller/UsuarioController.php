@@ -16,11 +16,16 @@ class UsuarioController extends Controller
 {
 
     public function loginAction(){
-        
+        if($usuario){
+            session_destroy();
+            session_start();
+            $_SESSION["usuario_id"] = $usuario->getId();
+            $_SESSION["usuario_nombre"] = $usuario->getNombre();
+        }
     }
     
     public function estaAutenticadoAction(){
-        if(isset($_SESSION["autenticado"])){
+        if(isset($_SESSION["usuario_id"])){
             return new \Symfony\Component\HttpFoundation\JsonResponse(array("autenticado"=>true));
         }else{
             return new \Symfony\Component\HttpFoundation\JsonResponse(array("autenticado"=>false));
@@ -33,12 +38,13 @@ class UsuarioController extends Controller
      */
     public function indexAction()
     {
+        if($this->estaAutenticadoAction()){
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('CaosMonopolyBundle:Usuario')->obtenerTodos();
 
         return new \Symfony\Component\HttpFoundation\JsonResponse($entities);
-        
+        }
     }
     /**
      * Creates a new Usuario entity.
