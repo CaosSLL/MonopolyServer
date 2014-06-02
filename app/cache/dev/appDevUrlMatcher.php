@@ -208,6 +208,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\UsuarioController::loginAction',  '_route' => 'usuario_login',);
             }
 
+            // usuario_crear
+            if ($pathinfo === '/usuario/crear') {
+                return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\UsuarioController::crearUsuarioAction',  '_route' => 'usuario_crear',);
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/p')) {
@@ -243,9 +248,24 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'partida_show')), array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\PartidaController::showAction',));
                 }
 
+                // partida_enEspera
+                if ($pathinfo === '/partida/partidasEnEspera') {
+                    return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\PartidaController::partidasEnEsperaAction',  '_route' => 'partida_enEspera',);
+                }
+
                 // partida_new
                 if ($pathinfo === '/partida/new') {
                     return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\PartidaController::newAction',  '_route' => 'partida_new',);
+                }
+
+                // partida_crear
+                if ($pathinfo === '/partida/crear') {
+                    return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\PartidaController::crearAction',  '_route' => 'partida_crear',);
+                }
+
+                // partida_empezar
+                if (0 === strpos($pathinfo, '/partida/empezar') && preg_match('#^/partida/empezar/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'partida_empezar')), array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\PartidaController::empezarAction',));
                 }
 
                 // partida_create
@@ -374,6 +394,66 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             if (preg_match('#^/casilla/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'casilla_show')), array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\CasillaController::showAction',));
             }
+
+        }
+
+        if (0 === strpos($pathinfo, '/posesioncasilla')) {
+            // posesioncasilla
+            if (rtrim($pathinfo, '/') === '/posesioncasilla') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'posesioncasilla');
+                }
+
+                return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\PosesionCasillaController::indexAction',  '_route' => 'posesioncasilla',);
+            }
+
+            // posesioncasilla_show
+            if (preg_match('#^/posesioncasilla/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'posesioncasilla_show')), array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\PosesionCasillaController::showAction',));
+            }
+
+            // posesioncasilla_new
+            if ($pathinfo === '/posesioncasilla/new') {
+                return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\PosesionCasillaController::newAction',  '_route' => 'posesioncasilla_new',);
+            }
+
+            // posesioncasilla_create
+            if ($pathinfo === '/posesioncasilla/create') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_posesioncasilla_create;
+                }
+
+                return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\PosesionCasillaController::createAction',  '_route' => 'posesioncasilla_create',);
+            }
+            not_posesioncasilla_create:
+
+            // posesioncasilla_edit
+            if (preg_match('#^/posesioncasilla/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'posesioncasilla_edit')), array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\PosesionCasillaController::editAction',));
+            }
+
+            // posesioncasilla_update
+            if (preg_match('#^/posesioncasilla/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
+                    $allow = array_merge($allow, array('POST', 'PUT'));
+                    goto not_posesioncasilla_update;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'posesioncasilla_update')), array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\PosesionCasillaController::updateAction',));
+            }
+            not_posesioncasilla_update:
+
+            // posesioncasilla_delete
+            if (preg_match('#^/posesioncasilla/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                    $allow = array_merge($allow, array('POST', 'DELETE'));
+                    goto not_posesioncasilla_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'posesioncasilla_delete')), array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\PosesionCasillaController::deleteAction',));
+            }
+            not_posesioncasilla_delete:
 
         }
 
