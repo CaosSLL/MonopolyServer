@@ -50,7 +50,7 @@ class Jugador
      *   @ORM\JoinColumn(name="id_partida", referencedColumnName="id")
      * })
      */
-    private $partida;
+    private $idPartida;
 
     /**
      * @var \Usuario
@@ -60,7 +60,7 @@ class Jugador
      *   @ORM\JoinColumn(name="id_usuario", referencedColumnName="id")
      * })
      */
-    private $usuario;
+    private $idUsuario;
 
     /**
      * @var \Personaje
@@ -70,7 +70,7 @@ class Jugador
      *   @ORM\JoinColumn(name="id_personaje", referencedColumnName="id")
      * })
      */
-    private $personaje;
+    private $idPersonaje;
 
 
 
@@ -93,7 +93,7 @@ class Jugador
     public function setPosicion($posicion)
     {
         $this->posicion = $posicion;
-
+    
         return $this;
     }
 
@@ -116,7 +116,7 @@ class Jugador
     public function setDinero($dinero)
     {
         $this->dinero = $dinero;
-
+    
         return $this;
     }
 
@@ -139,7 +139,7 @@ class Jugador
     public function setCarcel($carcel)
     {
         $this->carcel = $carcel;
-
+    
         return $this;
     }
 
@@ -154,71 +154,71 @@ class Jugador
     }
 
     /**
-     * Set partida
+     * Set idPartida
      *
-     * @param \Caos\MonopolyBundle\Entity\Partida $partida
+     * @param \Caos\MonopolyBundle\Entity\Partida $idPartida
      * @return Jugador
      */
-    public function setPartida(\Caos\MonopolyBundle\Entity\Partida $partida = null)
+    public function setIdPartida(\Caos\MonopolyBundle\Entity\Partida $idPartida = null)
     {
-        $this->partida = $partida;
-
+        $this->idPartida = $idPartida;
+    
         return $this;
     }
 
     /**
-     * Get partida
+     * Get idPartida
      *
      * @return \Caos\MonopolyBundle\Entity\Partida 
      */
-    public function getPartida()
+    public function getIdPartida()
     {
-        return $this->partida;
+        return $this->idPartida;
     }
 
     /**
-     * Set usuario
+     * Set idUsuario
      *
-     * @param \Caos\MonopolyBundle\Entity\Usuario $usuario
+     * @param \Caos\MonopolyBundle\Entity\Usuario $idUsuario
      * @return Jugador
      */
-    public function setUsuario(\Caos\MonopolyBundle\Entity\Usuario $usuario = null)
+    public function setIdUsuario(\Caos\MonopolyBundle\Entity\Usuario $idUsuario = null)
     {
-        $this->usuario = $usuario;
-
+        $this->idUsuario = $idUsuario;
+    
         return $this;
     }
 
     /**
-     * Get usuario
+     * Get idUsuario
      *
      * @return \Caos\MonopolyBundle\Entity\Usuario 
      */
-    public function getUsuario()
+    public function getIdUsuario()
     {
-        return $this->usuario;
+        return $this->idUsuario;
     }
 
     /**
-     * Set personaje
+     * Set idPersonaje
      *
-     * @param \Caos\MonopolyBundle\Entity\Personaje $personaje
+     * @param \Caos\MonopolyBundle\Entity\Personaje $idPersonaje
      * @return Jugador
      */
-    public function setPersonaje(\Caos\MonopolyBundle\Entity\Personaje $personaje = null)
-    {   
-        $this->personaje = $personaje;
-
+    public function setIdPersonaje(\Caos\MonopolyBundle\Entity\Personaje $idPersonaje = null)
+    {
+        $this->idPersonaje = $idPersonaje;
+    
         return $this;
     }
 
     /**
-     * Get personaje
+     * Get idPersonaje
      *
      * @return \Caos\MonopolyBundle\Entity\Personaje 
      */
-    public function getPersonaje()
+    public function getIdPersonaje()
     {
-        return $this->personaje;
+        return $this->idPersonaje;
     }
 }

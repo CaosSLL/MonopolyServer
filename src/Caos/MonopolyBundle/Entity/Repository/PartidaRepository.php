@@ -38,4 +38,17 @@ class PartidaRepository extends EntityRepository
         
     }
     
+    public function obtenerEnEspera(){
+        
+        $partida = $this->getEntityManager()->createQueryBuilder()
+                ->select("p")
+                ->from("CaosMonopolyBundle:Partida","p")
+                ->where("p.estado = 'esperando'")
+                ->getQuery()
+                ->getArrayResult();
+        
+        return $partida;
+        
+    }
+    
 }

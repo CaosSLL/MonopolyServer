@@ -206,40 +206,64 @@ class PartidaController extends Controller {
         ;
     }
 
-    public function crearPartidaAction(Request $request) {
+    public function partidasEnEsperaAction() {
 
-        $datos = array();
-        $datos["exito"] = true;
+        $em = $this->getDoctrine()->getManager();
+        $partidas = $em->getRepository("CaosMonopolyBundle:Partida")
+                ->obtenerEnEspera();
 
-        $datos["usuarios"] = $request->get("usuarios");
-//        $datos["personaje"] = $request->get("personaje");
-        $datos["token"] = $request->get("token");
-        $datos["fecha"] = $request->get("fecha");
+        return new \Symfony\Component\HttpFoundation\JsonResponse($partidas);
+    }
 
-        var_dump($datos);
+    public function crearAction(Request $request) {
+        
+        $em = $this->getDoctrine()->getManager();
+
+        $token = $request->get("token");
+
+        $partida = new Partida();
+        $partida->setFechaInicio(new \DateTime());
+        $partida->setBoteComun(0);
+        $partida->setIdJugadorTurno(null);
+        $partida->setToken($token);
+        $partida->setEstado("esperando");
+
+        $em->persist($partida);
+        $em->flush();
+
+        return new \Symfony\Component\HttpFoundation\JsonResponse(array("id" => $partida->getId()));
+    }
+
+    public function empezarAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getManager();
 
-        $partida = new Partida();
-        $partida->setBoteComun(0);
-        $partida->getFechaInicio($datos["fecha"]);
-//        $em->persist($partida);
-//        $em->flush();
+        $partida = $em->getRepository("CaosMonopolyBundle:Partida")->find($id);
 
-        foreach ($datos["usuarios"] as $idUsuario) {
-//            $usuario = $em->getRepository("CaosMonopolyBundle:Usuario")->find($idUsuario);
-//            $personaje = $em->getRepository("CaosMonopolyBundle:Personaje")->find($idUsuario);
-//            $jugador = new \Caos\MonopolyBundle\Entity\Jugador();
-//            $jugador->setPartida($partida);
-//            $jugador->setPersonaje($personaje);
-//            $jugador->setUsuario($usuario);
-//            $jugador->setDinero(1111);
-//            $jugador->setPosicion(0);
-//            $em->persist($jugador);
-//            $em->flush();
+        if ($partida) {
+            $partida->setEstado("empezada");
+            $em->flush();
         }
-
-        return new \Symfony\Component\HttpFoundation\JsonResponse($datos);
+        
+        $jugadores = $request->get("usuarios");
+        foreach($jugadores as $jugador){
+            $objJugador = new \Caos\MonopolyBundle\Entity\Jugador();
+            $usuario = $em->getRepository("CaosMonopolyBundle:Usuario")->find($jugador["id"]);
+            $personaje = $em->getRepository("CaosMonopolyBundle:Personaje")->find($jugador["personaje"]);
+            $objJugador->setCarcel(false);
+            $objJugador->setDinero(1000);
+            $objJugador->setPosicion(0);
+            $objJugador->setIdPartida($partida);
+            $objJugador->setIdPersonaje($personaje);
+            $objJugador->setIdUsuario($usuario);
+            
+            $em->persist($objJugador);
+            $em->flush();
+            
+        }
+        
+        return new \Symfony\Component\HttpFoundation\JsonResponse(array("id" => $objJugador->getId()));
+        
     }
 
 }

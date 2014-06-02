@@ -6,9 +6,21 @@ partida_show:
     pattern:  /{id}/show
     defaults: { _controller: "CaosMonopolyBundle:Partida:show" }
 
+partida_enEspera:
+    pattern:  /partidasEnEspera
+    defaults: { _controller: "CaosMonopolyBundle:Partida:partidasEnEspera" }
+
 partida_new:
     pattern:  /new
     defaults: { _controller: "CaosMonopolyBundle:Partida:new" }
+    
+partida_crear:
+    pattern:  /crear
+    defaults: { _controller: "CaosMonopolyBundle:Partida:crear" }
+
+partida_empezar:
+    pattern:  /empezar/{id}
+    defaults: { _controller: "CaosMonopolyBundle:Partida:empezar" }
 
 partida_create:
     pattern:  /create

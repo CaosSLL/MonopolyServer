@@ -21,3 +21,7 @@ CaosMonopolyBundle_jugador:
 CaosMonopolyBundle_casilla:
     resource: "@CaosMonopolyBundle/Resources/config/routing/casilla.yml"
     prefix:   /casilla
+    
+CaosMonopolyBundle_posesioncasilla:
+    resource: "@CaosMonopolyBundle/Resources/config/routing/posesioncasilla.yml"
+    prefix:   /posesioncasilla

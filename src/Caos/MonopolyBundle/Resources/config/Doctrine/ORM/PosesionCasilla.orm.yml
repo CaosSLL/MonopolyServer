@@ -8,10 +8,18 @@ PosesionCasilla:
         id_casilla:
             columns:
                 - id_casilla
-        IDX_D32571C9775CF17C:
+        id_partida:
             columns:
                 - id_partida
-    id: {  }
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
     fields:
         numCabania:
             type: integer
@@ -24,7 +32,7 @@ PosesionCasilla:
             nullable: false
             unsigned: false
             comment: ''
-    oneToOne:
+    manyToOne:
         idPartida:
             targetEntity: Partida
             cascade: {  }

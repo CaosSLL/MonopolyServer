@@ -36,7 +36,7 @@ usuario_autenticado:
 usuario_login:
     pattern: /login
     defaults: { _controller: "CaosMonopolyBundle:Usuario:login" }
-
-usuario_conectados:
-    pattern: /conectados
-    defaults: { _controller: "CaosMonopolyBundle:Usuario:conectados" }
+    
+usuario_crear:
+    pattern: /crear
+    defaults: { _controller: "CaosMonopolyBundle:Usuario:crearUsuario"}

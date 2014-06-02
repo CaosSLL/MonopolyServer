@@ -38,16 +38,29 @@ class UsuarioRepository extends EntityRepository
         
     }
     
-    public function obtenerUsuariosConectados(){
+    public function obtenerPorNombre($nombre){
         
-        $usuarios = $this->getEntityManager()->createQueryBuilder()
+        $usuario = $this->getEntityManager()->createQueryBuilder()
                 ->select("u")
                 ->from("CaosMonopolyBundle:Usuario","u")
-                ->where("u.estado = 1")
+                ->where("u.nombre = '".$nombre."'")
                 ->getQuery()
                 ->getArrayResult();
         
-        return $usuarios;
+        return $usuario;
+        
+    }
+    
+    public function obtenerPorEmail($email){
+        
+        $usuario = $this->getEntityManager()->createQueryBuilder()
+                ->select("u")
+                ->from("CaosMonopolyBundle:Usuario","u")
+                ->where("u.email = '".$email."'")
+                ->getQuery()
+                ->getArrayResult();
+        
+        return $usuario;
         
     }
     

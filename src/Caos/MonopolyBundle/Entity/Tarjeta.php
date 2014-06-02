@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Tarjeta
  *
  * @ORM\Table(name="tarjeta")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Caos\MonopolyBundle\Entity\Repository\TarjetaRepository")
  */
 class Tarjeta
 {
@@ -70,7 +70,7 @@ class Tarjeta
     public function setTexto($texto)
     {
         $this->texto = $texto;
-
+    
         return $this;
     }
 
@@ -93,7 +93,7 @@ class Tarjeta
     public function setRespuestas($respuestas)
     {
         $this->respuestas = $respuestas;
-
+    
         return $this;
     }
 
@@ -116,7 +116,7 @@ class Tarjeta
     public function setBeneficio($beneficio)
     {
         $this->beneficio = $beneficio;
-
+    
         return $this;
     }
 
@@ -139,7 +139,7 @@ class Tarjeta
     public function setPenalizacion($penalizacion)
     {
         $this->penalizacion = $penalizacion;
-
+    
         return $this;
     }
 

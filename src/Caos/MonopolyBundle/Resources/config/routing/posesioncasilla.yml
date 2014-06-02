@@ -1,0 +1,30 @@
+posesioncasilla:
+    pattern:  /
+    defaults: { _controller: "CaosMonopolyBundle:PosesionCasilla:index" }
+
+posesioncasilla_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CaosMonopolyBundle:PosesionCasilla:show" }
+
+posesioncasilla_new:
+    pattern:  /new
+    defaults: { _controller: "CaosMonopolyBundle:PosesionCasilla:new" }
+
+posesioncasilla_create:
+    pattern:  /create
+    defaults: { _controller: "CaosMonopolyBundle:PosesionCasilla:create" }
+    requirements: { _method: post }
+
+posesioncasilla_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "CaosMonopolyBundle:PosesionCasilla:edit" }
+
+posesioncasilla_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "CaosMonopolyBundle:PosesionCasilla:update" }
+    requirements: { _method: post|put }
+
+posesioncasilla_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "CaosMonopolyBundle:PosesionCasilla:delete" }
+    requirements: { _method: post|delete }

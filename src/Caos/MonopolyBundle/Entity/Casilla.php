@@ -91,7 +91,7 @@ class Casilla
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
-
+    
         return $this;
     }
 
@@ -114,7 +114,7 @@ class Casilla
     public function setNumero($numero)
     {
         $this->numero = $numero;
-
+    
         return $this;
     }
 
@@ -137,7 +137,7 @@ class Casilla
     public function setPrecio($precio)
     {
         $this->precio = $precio;
-
+    
         return $this;
     }
 
@@ -160,7 +160,7 @@ class Casilla
     public function setPrecioAlquiler($precioAlquiler)
     {
         $this->precioAlquiler = $precioAlquiler;
-
+    
         return $this;
     }
 
@@ -183,7 +183,7 @@ class Casilla
     public function setPrecioCabania($precioCabania)
     {
         $this->precioCabania = $precioCabania;
-
+    
         return $this;
     }
 
@@ -206,7 +206,7 @@ class Casilla
     public function setPrecioHipoteca($precioHipoteca)
     {
         $this->precioHipoteca = $precioHipoteca;
-
+    
         return $this;
     }
 
@@ -229,7 +229,7 @@ class Casilla
     public function setTipo($tipo)
     {
         $this->tipo = $tipo;
-
+    
         return $this;
     }
 

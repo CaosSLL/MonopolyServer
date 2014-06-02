@@ -36,6 +36,20 @@ class Partida
     private $boteComun = '0';
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", length=32, nullable=false)
+     */
+    private $token;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estado", type="string", length=30, nullable=false)
+     */
+    private $estado;
+
+    /**
      * @var \Jugador
      *
      * @ORM\ManyToOne(targetEntity="Jugador")
@@ -66,7 +80,7 @@ class Partida
     public function setFechaInicio($fechaInicio)
     {
         $this->fechaInicio = $fechaInicio;
-
+    
         return $this;
     }
 
@@ -89,7 +103,7 @@ class Partida
     public function setBoteComun($boteComun)
     {
         $this->boteComun = $boteComun;
-
+    
         return $this;
     }
 
@@ -104,6 +118,52 @@ class Partida
     }
 
     /**
+     * Set token
+     *
+     * @param string $token
+     * @return Partida
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string 
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * Set estado
+     *
+     * @param string $estado
+     * @return Partida
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+    
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return string 
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
      * Set idJugadorTurno
      *
      * @param \Caos\MonopolyBundle\Entity\Jugador $idJugadorTurno
@@ -112,7 +172,7 @@ class Partida
     public function setIdJugadorTurno(\Caos\MonopolyBundle\Entity\Jugador $idJugadorTurno = null)
     {
         $this->idJugadorTurno = $idJugadorTurno;
-
+    
         return $this;
     }
 

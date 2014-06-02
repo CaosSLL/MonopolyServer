@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class PartidaType extends AbstractType
+class PosesionCasillaType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,11 +15,11 @@ class PartidaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fechaInicio')
-            ->add('boteComun')
-            ->add('idJugadorTurno')
-            ->add('token')
-            ->add('estado')
+            ->add('numCabania')
+            ->add('hipotecada')
+            ->add('idPartida')
+            ->add('idJugador')
+            ->add('idCasilla')
         ;
     }
     
@@ -29,7 +29,7 @@ class PartidaType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Caos\MonopolyBundle\Entity\Partida'
+            'data_class' => 'Caos\MonopolyBundle\Entity\PosesionCasilla'
         ));
     }
 
@@ -38,6 +38,6 @@ class PartidaType extends AbstractType
      */
     public function getName()
     {
-        return 'caos_monopolybundle_partida';
+        return 'caos_monopolybundle_posesioncasilla';
     }
 }
