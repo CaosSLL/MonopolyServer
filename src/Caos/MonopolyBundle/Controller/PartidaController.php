@@ -243,11 +243,9 @@ class PartidaController extends Controller {
         if ($partida) {
             $partida->setEstado("empezada");
             $em->flush();
-//            return new \Symfony\Component\HttpFoundation\JsonResponse(array("exito" => true));
         }
         
         $jugadores = $request->get("usuarios");
-//        var_dump($jugadores);
         foreach($jugadores as $jugador){
             $objJugador = new \Caos\MonopolyBundle\Entity\Jugador();
             $usuario = $em->getRepository("CaosMonopolyBundle:Usuario")->find($jugador["id"]);
