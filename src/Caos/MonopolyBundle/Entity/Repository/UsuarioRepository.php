@@ -64,4 +64,16 @@ class UsuarioRepository extends EntityRepository
         
     }
     
+    public function obtenerUsuariosConectados() {
+
+        $usuarios = $this->getEntityManager()->createQueryBuilder()
+                ->select("u")
+                ->from("CaosMonopolyBundle:Usuario", "u")
+                ->where("u.estado = 1")
+                ->getQuery()
+                ->getArrayResult();
+
+        return $usuarios;
+    }
+    
 }
