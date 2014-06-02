@@ -208,9 +208,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\UsuarioController::loginAction',  '_route' => 'usuario_login',);
             }
 
-            // usuario_crear
-            if ($pathinfo === '/usuario/crear') {
-                return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\UsuarioController::crearUsuarioAction',  '_route' => 'usuario_crear',);
+            if (0 === strpos($pathinfo, '/usuario/c')) {
+                // usuario_crear
+                if ($pathinfo === '/usuario/crear') {
+                    return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\UsuarioController::crearUsuarioAction',  '_route' => 'usuario_crear',);
+                }
+
+                // usuario_conectados
+                if ($pathinfo === '/usuario/conectados') {
+                    return array (  '_controller' => 'Caos\\MonopolyBundle\\Controller\\UsuarioController::conectadosAction',  '_route' => 'usuario_conectados',);
+                }
+
             }
 
         }
