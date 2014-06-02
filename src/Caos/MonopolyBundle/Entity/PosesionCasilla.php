@@ -86,7 +86,7 @@ class PosesionCasilla
     public function setNumCabania($numCabania)
     {
         $this->numCabania = $numCabania;
-
+    
         return $this;
     }
 
@@ -109,7 +109,7 @@ class PosesionCasilla
     public function setHipotecada($hipotecada)
     {
         $this->hipotecada = $hipotecada;
-
+    
         return $this;
     }
 
@@ -132,7 +132,7 @@ class PosesionCasilla
     public function setIdPartida(\Caos\MonopolyBundle\Entity\Partida $idPartida = null)
     {
         $this->idPartida = $idPartida;
-
+    
         return $this;
     }
 
@@ -155,7 +155,7 @@ class PosesionCasilla
     public function setIdJugador(\Caos\MonopolyBundle\Entity\Jugador $idJugador = null)
     {
         $this->idJugador = $idJugador;
-
+    
         return $this;
     }
 
@@ -178,7 +178,7 @@ class PosesionCasilla
     public function setIdCasilla(\Caos\MonopolyBundle\Entity\Casilla $idCasilla = null)
     {
         $this->idCasilla = $idCasilla;
-
+    
         return $this;
     }
 

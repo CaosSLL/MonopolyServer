@@ -49,7 +49,7 @@ class Personaje
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
-
+    
         return $this;
     }
 

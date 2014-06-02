@@ -79,7 +79,7 @@ class PosesionTarjeta
     public function setBeneficio($beneficio)
     {
         $this->beneficio = $beneficio;
-
+    
         return $this;
     }
 
@@ -102,7 +102,7 @@ class PosesionTarjeta
     public function setIdPartida(\Caos\MonopolyBundle\Entity\Partida $idPartida = null)
     {
         $this->idPartida = $idPartida;
-
+    
         return $this;
     }
 
@@ -125,7 +125,7 @@ class PosesionTarjeta
     public function setIdTarjeta(\Caos\MonopolyBundle\Entity\Tarjeta $idTarjeta = null)
     {
         $this->idTarjeta = $idTarjeta;
-
+    
         return $this;
     }
 
@@ -148,7 +148,7 @@ class PosesionTarjeta
     public function setIdJugador(\Caos\MonopolyBundle\Entity\Jugador $idJugador = null)
     {
         $this->idJugador = $idJugador;
-
+    
         return $this;
     }
 

@@ -18,6 +18,8 @@ class PartidaType extends AbstractType
             ->add('fechaInicio')
             ->add('boteComun')
             ->add('idJugadorTurno')
+            ->add('token')
+            ->add('estado')
         ;
     }
     

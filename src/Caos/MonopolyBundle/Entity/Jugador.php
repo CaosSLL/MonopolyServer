@@ -93,7 +93,7 @@ class Jugador
     public function setPosicion($posicion)
     {
         $this->posicion = $posicion;
-
+    
         return $this;
     }
 
@@ -116,7 +116,7 @@ class Jugador
     public function setDinero($dinero)
     {
         $this->dinero = $dinero;
-
+    
         return $this;
     }
 
@@ -139,7 +139,7 @@ class Jugador
     public function setCarcel($carcel)
     {
         $this->carcel = $carcel;
-
+    
         return $this;
     }
 
@@ -162,7 +162,7 @@ class Jugador
     public function setIdPartida(\Caos\MonopolyBundle\Entity\Partida $idPartida = null)
     {
         $this->idPartida = $idPartida;
-
+    
         return $this;
     }
 
@@ -185,7 +185,7 @@ class Jugador
     public function setIdUsuario(\Caos\MonopolyBundle\Entity\Usuario $idUsuario = null)
     {
         $this->idUsuario = $idUsuario;
-
+    
         return $this;
     }
 
@@ -208,7 +208,7 @@ class Jugador
     public function setIdPersonaje(\Caos\MonopolyBundle\Entity\Personaje $idPersonaje = null)
     {
         $this->idPersonaje = $idPersonaje;
-
+    
         return $this;
     }
 

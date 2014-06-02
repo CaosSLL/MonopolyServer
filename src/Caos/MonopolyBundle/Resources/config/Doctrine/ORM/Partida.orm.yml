@@ -33,8 +33,15 @@ Partida:
             nullable: false
             comment: ''
             column: token
+        estado:
+            type: string
+            length: 30
+            nullable: false
+            comment: ''
+            column: estado
     manyToOne:
         idJugadorTurno:
+            nullable: true;
             targetEntity: Jugador
             cascade: {  }
             mappedBy: null

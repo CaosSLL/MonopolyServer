@@ -91,7 +91,7 @@ class Usuario
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
-
+    
         return $this;
     }
 
@@ -114,7 +114,7 @@ class Usuario
     public function setPassword($password)
     {
         $this->password = $password;
-
+    
         return $this;
     }
 
@@ -137,7 +137,7 @@ class Usuario
     public function setEmail($email)
     {
         $this->email = $email;
-
+    
         return $this;
     }
 
@@ -160,7 +160,7 @@ class Usuario
     public function setPartidasJugadas($partidasJugadas)
     {
         $this->partidasJugadas = $partidasJugadas;
-
+    
         return $this;
     }
 
@@ -183,7 +183,7 @@ class Usuario
     public function setPartidasGanadas($partidasGanadas)
     {
         $this->partidasGanadas = $partidasGanadas;
-
+    
         return $this;
     }
 
@@ -206,7 +206,7 @@ class Usuario
     public function setEstado($estado)
     {
         $this->estado = $estado;
-
+    
         return $this;
     }
 
@@ -229,7 +229,7 @@ class Usuario
     public function setRol($rol)
     {
         $this->rol = $rol;
-
+    
         return $this;
     }
 

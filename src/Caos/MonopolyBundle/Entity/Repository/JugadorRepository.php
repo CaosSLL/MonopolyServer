@@ -17,9 +17,9 @@ class JugadorRepository extends EntityRepository {
         $jugadores = $this->getEntityManager()->createQueryBuilder()
                 ->select("j, per, usu, par")
                 ->from("CaosMonopolyBundle:Jugador", "j")
-                ->join("j.personaje","per")
-                ->join("j.usuario","usu")
-                ->join("j.partida","par")
+                ->join("j.idPersonaje","per")
+                ->join("j.idUsuario","usu")
+                ->join("j.idPartida","par")
                 ->getQuery()
                 ->getArrayResult();
         
@@ -32,9 +32,9 @@ class JugadorRepository extends EntityRepository {
         $jugador = $this->getEntityManager()->createQueryBuilder()
                 ->select("j, per, usu, par")
                 ->from("CaosMonopolyBundle:Jugador", "j")
-                ->join("j.personaje","per")
-                ->join("j.usuario","usu")
-                ->join("j.partida","par")
+                ->join("j.idPersonaje","per")
+                ->join("j.idUsuario","usu")
+                ->join("j.idPartida","par")
                 ->where("j.id = " . $id)
                 ->getQuery()
                 ->getArrayResult();
@@ -47,9 +47,9 @@ class JugadorRepository extends EntityRepository {
         $jugadores = $this->getEntityManager()->createQueryBuilder()
                 ->select("j, per, par")
                 ->from("CaosMonopolyBundle:Jugador", "j")
-                ->join("j.personaje","per")
-                ->join("j.partida","par")
-                ->where("j.usuario = ".$id)
+                ->join("j.idPersonaje","per")
+                ->join("j.idPartida","par")
+                ->where("j.idUsuario = ".$id)
                 ->getQuery()
                 ->getArrayResult();
 
@@ -62,9 +62,9 @@ class JugadorRepository extends EntityRepository {
         $jugadores = $this->getEntityManager()->createQueryBuilder()
                 ->select("j, per, usu")
                 ->from("CaosMonopolyBundle:Jugador", "j")
-                ->join("j.personaje","per")
-                ->join("j.usuario","usu")
-                ->where("j.partida = ".$id)
+                ->join("j.idPersonaje","per")
+                ->join("j.idUsuario","usu")
+                ->where("j.idPartida = ".$id)
                 ->getQuery()
                 ->getArrayResult();
 
