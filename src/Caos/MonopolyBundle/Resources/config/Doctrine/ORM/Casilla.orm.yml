@@ -51,4 +51,10 @@ Casilla:
             length: 30
             fixed: false
             comment: ''
+        color:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
     lifecycleCallbacks: {  }

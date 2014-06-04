@@ -69,6 +69,13 @@ class Casilla
      * @ORM\Column(name="tipo", type="string", length=30, nullable=false)
      */
     private $tipo;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="color", type="string", length=10, nullable=true)
+     */
+    private $color;
 
 
 
@@ -241,5 +248,28 @@ class Casilla
     public function getTipo()
     {
         return $this->tipo;
+    }
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     * @return Casilla
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string 
+     */
+    public function getColor()
+    {
+        return $this->color;
     }
 }
