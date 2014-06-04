@@ -13,17 +13,43 @@ use Caos\MonopolyBundle\Form\UsuarioType;
  */
 class UsuarioController extends Controller {
 
-    public function loginAction() {
-        if ($usuario) {
-            session_destroy();
-            session_start();
-            $_SESSION["usuario_id"] = $usuario->getId();
-            $_SESSION["usuario_nombre"] = $usuario->getNombre();
+    public function loginAction(Request $request) {
+        $usuario = $request->get("usuario");
+        $password = $request->get("password");
+
+        if ($usuario && $password) {
+            $em = $this->getDoctrine()->getManager();
+            $u = $em->getRepository("CaosMonopolyBundle:Usuario")
+                    ->login($usuario, $password);
+//            var_dump($u);
+            if ($u) {
+                $u = $u[0];
+                $session = $request->getSession();
+                $session->set("usuario", array("id" => $u->getId(), "nombre" => $u->getNombre(), "rol"=> $u->getRol()));
+//                session_start();
+//                $_SESSION["idUsuario"] = $u->getId();
+//                $_SESSION["nombreUsuario"] = $u->getNombre();
+//                $_SESSION["rolUsuario"] = $u->getRol();
+
+                return new \Symfony\Component\HttpFoundation\JsonResponse(array("autenticado" => true, "nombre" => $u->getNombre(), "id" => $u->getId()));
+            } else {
+                return new \Symfony\Component\HttpFoundation\JsonResponse(array("error" => "Usuario o contraseña incorrecto", "autenticado" => false));
+            }
+        } else {
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array("error" => "Campo vacio", "autenticado" => false));
         }
     }
+    
+    public function logoutAction(Request $request){
+//        session_start();
+//        session_destroy();
+        $session = $request->getSession()->clear();
+        return new \Symfony\Component\HttpFoundation\JsonResponse(array("autenticado" => false));
+    }
 
-    public function estaAutenticadoAction() {
-        if (isset($_SESSION["usuario_id"])) {
+    public function estaAutenticadoAction(Request $request) {
+        $session = $request->getSession("usuario");
+        if ($session) {
             return new \Symfony\Component\HttpFoundation\JsonResponse(array("autenticado" => true));
         } else {
             return new \Symfony\Component\HttpFoundation\JsonResponse(array("autenticado" => false));

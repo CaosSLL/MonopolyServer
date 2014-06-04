@@ -76,4 +76,16 @@ class UsuarioRepository extends EntityRepository
         return $usuarios;
     }
     
+    public function login($u, $p){
+        $usuario = $this->getEntityManager()->createQueryBuilder()
+                ->select("u")
+                ->from("CaosMonopolyBundle:Usuario", "u")
+                ->where("u.nombre = '".$u."'")
+                ->andWhere("u.password = '".md5($p)."'")
+                ->getQuery()
+                ->getResult();
+        
+        return $usuario;
+    }
+    
 }
