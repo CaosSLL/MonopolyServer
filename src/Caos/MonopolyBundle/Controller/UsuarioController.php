@@ -288,14 +288,16 @@ class UsuarioController extends Controller {
             $em->flush();
 
             // Iniciar una sesión para el usuario
-            session_destroy();
-            session_start();
-
-            $_SESSION["id"] = $nuevo->getId();
-            $_SESSION["user"] = $nuevo->getNombre();
-
+            $this->logoutAction($request);
+            $this->loginAction($request);
+            
             // Devolvemos un mensaje al cliente
-            return new \Symfony\Component\HttpFoundation\JsonResponse(array("tipo" => "msg", "msg" => "El usuario se ha creado con éxito"));
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array(
+                "tipo" => "msg", 
+                "msg" => "El usuario se ha creado con éxito",
+                "id" => $nuevo->getId(),
+                "nombre" => $nuevo->getNombre(),
+            ));
         }
     }
 
