@@ -28,3 +28,11 @@ posesioncasilla_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "CaosMonopolyBundle:PosesionCasilla:delete" }
     requirements: { _method: post|delete }
+
+posesioncasilla_comprobarPosesiones:
+    pattern:  /comprobar/{idJugador}/{idPartida}
+    defaults: { _controller: "CaosMonopolyBundle:PosesionCasilla:comprobarPosesiones" }
+
+posesioncasilla_comprar:
+    pattern:  /comprar/{idCasilla}/{idJugador}/{idPartida}/{dinero}
+    defaults: { _controller: "CaosMonopolyBundle:PosesionCasilla:comprar" }

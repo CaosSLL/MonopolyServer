@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class PosesionCasillaRepository extends EntityRepository
 {
+    
+    function comprobarPosesiones($idJugador, $idPartida){
+        $posesiones = $this->getEntityManager()->createQueryBuilder()
+                ->select("pc, c")
+                ->from("CaosMonopolyBundle:PosesionCasilla", "pc")
+                ->join("pc.idCasilla","c")
+                ->where("pc.idJugador = " . $idJugador)
+                ->andWhere("pc.idPartida = " . $idPartida)
+                ->getQuery()
+                ->getArrayResult();
+        
+        return $posesiones;
+    }
+    
 }
