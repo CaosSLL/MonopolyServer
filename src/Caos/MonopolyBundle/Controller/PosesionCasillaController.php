@@ -230,8 +230,8 @@ class PosesionCasillaController extends Controller {
         $posesionCasilla = new PosesionCasilla();
         $casilla = $em->getRepository('CaosMonopolyBundle:Casilla')->find($idCasilla);
         $posesionCasilla->setIdCasilla($casilla);
-        $jugador = $em->getRepository('CaosMonopolyBundle:Jugador')->find($idJugador);
-        $posesionCasilla->setIdJugador($jugador);
+        $jugador = $em->getRepository('CaosMonopolyBundle:Jugador')->obtenerPorUsuario($idJugador,$idPartida,false);
+        $posesionCasilla->setIdJugador($jugador[0]);
         $partida = $em->getRepository('CaosMonopolyBundle:Partida')->find($idPartida);
         $posesionCasilla->setIdPartida($partida);
         $posesionCasilla->setHipotecada(0);
@@ -240,7 +240,7 @@ class PosesionCasillaController extends Controller {
         $em->persist($posesionCasilla);
         $em->flush();
 
-        $jugador->setDinero($dinero - $casilla->getPrecio());
+        $jugador[0]->setDinero($dinero - $casilla->getPrecio());
 
         $em->flush();
 

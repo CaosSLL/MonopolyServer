@@ -17,14 +17,13 @@ class JugadorRepository extends EntityRepository {
         $jugadores = $this->getEntityManager()->createQueryBuilder()
                 ->select("j, per, usu, par")
                 ->from("CaosMonopolyBundle:Jugador", "j")
-                ->join("j.idPersonaje","per")
-                ->join("j.idUsuario","usu")
-                ->join("j.idPartida","par")
+                ->join("j.idPersonaje", "per")
+                ->join("j.idUsuario", "usu")
+                ->join("j.idPartida", "par")
                 ->getQuery()
                 ->getArrayResult();
-        
+
         return $jugadores;
-        
     }
 
     public function obtenerPorId($id) {
@@ -32,9 +31,9 @@ class JugadorRepository extends EntityRepository {
         $jugador = $this->getEntityManager()->createQueryBuilder()
                 ->select("j, per, usu, par")
                 ->from("CaosMonopolyBundle:Jugador", "j")
-                ->join("j.idPersonaje","per")
-                ->join("j.idUsuario","usu")
-                ->join("j.idPartida","par")
+                ->join("j.idPersonaje", "per")
+                ->join("j.idUsuario", "usu")
+                ->join("j.idPartida", "par")
                 ->where("j.id = " . $id)
                 ->getQuery()
                 ->getArrayResult();
@@ -42,34 +41,51 @@ class JugadorRepository extends EntityRepository {
         return $jugador;
     }
 
-    public function obtenerPorUsuario($id){
-        
+    public function obtenerPorUsuario($id, $idPartida = null, $array = true) {
+
         $jugadores = $this->getEntityManager()->createQueryBuilder()
                 ->select("j, per, par")
                 ->from("CaosMonopolyBundle:Jugador", "j")
-                ->join("j.idPersonaje","per")
-                ->join("j.idPartida","par")
-                ->where("j.idUsuario = ".$id)
-                ->getQuery()
-                ->getArrayResult();
-
-        return $jugadores;
-        
+                ->join("j.idPersonaje", "per")
+                ->join("j.idPartida", "par")
+                ->where("j.idUsuario = " . $id);
+        if($idPartida){
+            $jugadores = $jugadores->andWhere("j.idPartida = ".$idPartida);
+        }
+        $jugadores = $jugadores->getQuery();
+        if ($array) {
+            return $jugadores->getArrayResult();
+        } else {
+            return $jugadores->getResult();
+        }
     }
-    
-    public function obtenerPorPartida($id){
-        
+
+    public function obtenerPorPartida($id) {
+
         $jugadores = $this->getEntityManager()->createQueryBuilder()
                 ->select("j, per, usu")
                 ->from("CaosMonopolyBundle:Jugador", "j")
-                ->join("j.idPersonaje","per")
-                ->join("j.idUsuario","usu")
-                ->where("j.idPartida = ".$id)
+                ->join("j.idPersonaje", "per")
+                ->join("j.idUsuario", "usu")
+                ->where("j.idPartida = " . $id)
                 ->getQuery()
                 ->getArrayResult();
 
         return $jugadores;
-        
     }
-    
+
+    public function obtenerPersonajes($token) {
+
+        $personajes = $this->getEntityManager()->createQueryBuilder()
+                ->select("j, per")
+                ->from("CaosMonopolyBundle:Jugador", "j")
+                ->join("j.idPersonaje", "per")
+                ->join("j.idPartida", "par")
+                ->where("par.token = " . $token)
+                ->getQuery()
+                ->getArrayResult();
+
+        return $personajes;
+    }
+
 }

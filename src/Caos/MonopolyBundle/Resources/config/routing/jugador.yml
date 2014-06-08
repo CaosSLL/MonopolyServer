@@ -14,6 +14,10 @@ jugador_show_partida:
     pattern:  /{id}/show_partida
     defaults: { _controller: "CaosMonopolyBundle:Jugador:showPartida" }
 
+jugador_personajes_disponibles:
+    pattern:  /personajesDisponibles/{token}
+    defaults: { _controller: "CaosMonopolyBundle:Jugador:personajesDisponibles" }
+
 jugador_new:
     pattern:  /new
     defaults: { _controller: "CaosMonopolyBundle:Jugador:new" }

@@ -248,4 +248,14 @@ class JugadorController extends Controller
             ->getForm()
         ;
     }
+    
+    public function personajesDisponiblesAction($token){
+        
+        $personajes = $this->getDoctrine()->getManager()
+                ->getRepository("CaosMonopolyBundle:Jugador")->obtenerPersonajes($token);
+        
+        return new \Symfony\Component\HttpFoundation\JsonResponse($personajes);
+        
+    }
+    
 }
