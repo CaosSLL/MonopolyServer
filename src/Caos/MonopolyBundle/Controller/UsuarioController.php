@@ -25,7 +25,7 @@ class UsuarioController extends Controller {
             if ($u) {
                 $u = $u[0];
                 $session = $request->getSession();
-                $session->set("usuario", array("id" => $u->getId(), "nombre" => $u->getNombre(), "rol"=> $u->getRol()));
+                $session->set("usuario", array("id" => $u->getId(), "nombre" => $u->getNombre(), "rol" => $u->getRol()));
 //                session_start();
 //                $_SESSION["idUsuario"] = $u->getId();
 //                $_SESSION["nombreUsuario"] = $u->getNombre();
@@ -39,8 +39,8 @@ class UsuarioController extends Controller {
             return new \Symfony\Component\HttpFoundation\JsonResponse(array("error" => "Campo vacio", "autenticado" => false));
         }
     }
-    
-    public function logoutAction(Request $request){
+
+    public function logoutAction(Request $request) {
 //        session_start();
 //        session_destroy();
         $session = $request->getSession()->clear();
@@ -290,10 +290,10 @@ class UsuarioController extends Controller {
             // Iniciar una sesión para el usuario
             $this->logoutAction($request);
             $this->loginAction($request);
-            
+
             // Devolvemos un mensaje al cliente
             return new \Symfony\Component\HttpFoundation\JsonResponse(array(
-                "tipo" => "msg", 
+                "tipo" => "msg",
                 "msg" => "El usuario se ha creado con éxito",
                 "id" => $nuevo->getId(),
                 "nombre" => $nuevo->getNombre(),
@@ -308,6 +308,40 @@ class UsuarioController extends Controller {
         $entities = $em->getRepository('CaosMonopolyBundle:Usuario')->obtenerUsuariosConectados();
 
         return new \Symfony\Component\HttpFoundation\JsonResponse($entities);
+    }
+
+    public function cambiarUsuarioAction($idUsuario, $pass, $nombreAntiguo, $nombreNuevo) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $usuario = $em->getRepository('CaosMonopolyBundle:Usuario')->find($idUsuario);
+
+        if ($usuario->getPassword() === md5($pass)) {
+            if ($usuario->getNombre() === $nombreNuevo) {
+                return new \Symfony\Component\HttpFoundation\JsonResponse(array("error" => "El usuario ya tiene ese nombre"));
+            } else if ($usuario->getNombre() === $nombreAntiguo) {
+                $usuario->setNombre($nombreNuevo);
+                $em->flush();
+            }
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array("idUsuario" => $usuario->getId(), "nombreUsuario" => $usuario->getNombre()));
+        }else{
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array("error" => "La contraseña no es correcta"));            
+        }
+    }
+
+    public function cambiarPasswordAction($idUsuario, $oldPassword, $nuevaPassword) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $usuario = $em->getRepository('CaosMonopolyBundle:Usuario')->find($idUsuario);
+
+        if ($usuario->getPassword() === md5($oldPassword)) {
+            $usuario->setPassword(md5($nuevaPassword));
+            $em->flush();
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array("idUsuario" => $usuario->getId(), "passwordUsuario" => $usuario->getPassword()));
+        } else {
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array("error" => "La contraseña no es correcta"));
+        }
     }
 
 }

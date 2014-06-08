@@ -48,3 +48,11 @@ usuario_crear:
 usuario_conectados:
     pattern: /conectados
     defaults: { _controller: "CaosMonopolyBundle:Usuario:conectados" }
+  
+usuario_cambiarUsuario:
+    pattern: /cambiarUsuario/{idUsuario}/{pass}/{nombreAntiguo}/{nombreNuevo} 
+    defaults: { _controller: "CaosMonopolyBundle:Usuario:cambiarUsuario" }
+    
+usuario_cambiarPassword:
+    pattern: /cambiarPassword/{idUsuario}/{oldPassword}/{nuevaPassword}
+    defaults: { _controller: "CaosMonopolyBundle:Usuario:cambiarPassword" }
