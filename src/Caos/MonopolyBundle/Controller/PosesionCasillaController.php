@@ -256,5 +256,24 @@ class PosesionCasillaController extends Controller {
             return new \Symfony\Component\HttpFoundation\JsonResponse(array("idPosesionCasilla" => null));
         }
     }
+    
+    
+    public function obtenerTodasPosesionesAction(Request $request) {
+        // Obtenemos los datos que se utilizarán para consultar a la BD
+        $idPartida = $request->get("idPartida");
+        $idUsuario = $request->get("idUsuario");
+        
+        // Creamos el EntityManager
+        $em = $this->getDoctrine()->getManager();
+        $posesiones = $em->getRepository("CaosMonopolyBundle:PosesionCasilla")
+                ->obtenerTodasPosesiones($idPartida, $idUsuario);
+        
+        if($posesiones) {
+            return new \Symfony\Component\HttpFoundation\JsonResponse($posesiones);
+        } else {
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array("posesiones" => null));            
+        }
+        
+    }
 
 }

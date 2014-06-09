@@ -25,4 +25,28 @@ class PosesionCasillaRepository extends EntityRepository
         return $poseedor;
     }
     
+    /**
+     * Con este método obtienes todas las posesiones que tiene el jugador en una partida
+     * 
+     * @param type $idPartida
+     *      el id de la partida de la que se quieren obtener los datos
+     * @param type $idUsuario
+     *      el id del jugador del que se quieren obtener los datos
+     * @return type {array}
+     *      array con las casillas que tiene el jugador en la partida
+     * 
+     */
+    function obtenerTodasPosesiones($idPartida, $idUsuario) {
+        $casillas = $this->getEntityManager()->createQueryBuilder()
+                ->select("pc")
+                ->from("CaosMonopolyBundle:PosesionCasilla", "pc")
+                ->join("pc.idJugador", "j")
+                ->where("j.idPartida = " . $idPartida)
+                ->andWhere("j.idUsuario = " . $idUsuario)
+                ->getQuery()
+                ->getArrayResult();
+                
+        return $casillas;                
+    }
+    
 }
