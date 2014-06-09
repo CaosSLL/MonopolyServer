@@ -216,11 +216,11 @@ class PosesionCasillaController extends Controller {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('CaosMonopolyBundle:PosesionCasilla')->comprobarPosesiones($idJugador, $idPartida);
-
+        
         if ($entities) {
             return new \Symfony\Component\HttpFoundation\JsonResponse($entities);
         } else {
-            return new \Symfony\Component\HttpFoundation\JsonResponse(array($idJugador => "No tiene posesiones"));
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array("idJugador" => "No tiene posesiones"));
         }
     }
 

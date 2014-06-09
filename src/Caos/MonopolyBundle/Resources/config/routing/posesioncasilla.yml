@@ -30,7 +30,7 @@ posesioncasilla_delete:
     requirements: { _method: post|delete }
 
 posesioncasilla_comprobarPosesiones:
-    pattern:  /comprobar/{idJugador}/{idPartida}
+    pattern:  /comprobarPosesion/{idJugador}/{idPartida}
     defaults: { _controller: "CaosMonopolyBundle:PosesionCasilla:comprobarPosesiones" }
 
 posesioncasilla_comprar:
