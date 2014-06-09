@@ -212,27 +212,33 @@ class PosesionCasillaController extends Controller {
         ;
     }
 
-    public function comprobarPosesionesAction($idJugador, $idPartida) {
+    public function comprobarPosesionAction($idCasilla, $idPartida) {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('CaosMonopolyBundle:PosesionCasilla')->comprobarPosesiones($idJugador, $idPartida);
+        $entities = $em->getRepository('CaosMonopolyBundle:PosesionCasilla')->comprobarPosesiones($idCasilla, $idPartida);
         
         if ($entities) {
-            return new \Symfony\Component\HttpFoundation\JsonResponse($entities);
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array(
+                "poseedor" => $entities[0],
+            ));
         } else {
-            return new \Symfony\Component\HttpFoundation\JsonResponse(array("idJugador" => "No tiene posesiones"));
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array(
+                "poseedor" => "No tiene posesiones",
+            ));
         }
     }
 
-    public function comprarAction($idCasilla, $idJugador, $idPartida, $dinero) {
+    public function comprarAction($idCasilla, $idUsuario, $idPartida, $dinero) {
         $em = $this->getDoctrine()->getManager();
-
         $posesionCasilla = new PosesionCasilla();
-        $casilla = $em->getRepository('CaosMonopolyBundle:Casilla')->find($idCasilla);
-        $posesionCasilla->setIdCasilla($casilla);
-        $jugador = $em->getRepository('CaosMonopolyBundle:Jugador')->obtenerPorUsuario($idJugador,$idPartida,false);
-        $posesionCasilla->setIdJugador($jugador[0]);
+
+        // Recogemos los valores relacionados con otras tablas
+        $casilla = $em->getRepository('CaosMonopolyBundle:Casilla')->find($idCasilla);        
+        $jugador = $em->getRepository('CaosMonopolyBundle:Jugador')->obtenerPorUsuario($idUsuario,$idPartida,false);        
         $partida = $em->getRepository('CaosMonopolyBundle:Partida')->find($idPartida);
+        
+        $posesionCasilla->setIdCasilla($casilla);
+        $posesionCasilla->setIdJugador($jugador[0]);
         $posesionCasilla->setIdPartida($partida);
         $posesionCasilla->setHipotecada(0);
         $posesionCasilla->setNumCabania(0);
@@ -247,7 +253,7 @@ class PosesionCasillaController extends Controller {
         if ($posesionCasilla->getId()) {
             return new \Symfony\Component\HttpFoundation\JsonResponse(array("idPosesionCasilla" => $posesionCasilla->getId()));
         } else {
-            return new \Symfony\Component\HttpFoundation\JsonResponse(array("idPosesionCasilla" => 0));
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array("idPosesionCasilla" => null));
         }
     }
 
