@@ -36,3 +36,7 @@ posesioncasilla_comprobarPosesion:
 posesioncasilla_comprar:
     pattern:  /comprar/{idCasilla}/{idUsuario}/{idPartida}/{dinero}
     defaults: { _controller: "CaosMonopolyBundle:PosesionCasilla:comprar" }
+
+posesioncasilla_obtenerTodasPosesiones:
+    pattern: /obtenerTodasPosesiones/{idPartida}/{idUsuario}
+    defaults: { _controller: "CaosMonopolyBundle:PosesionCasilla:obtenerTodasPosesiones" }
