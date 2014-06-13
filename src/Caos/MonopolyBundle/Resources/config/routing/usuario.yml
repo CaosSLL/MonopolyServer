@@ -56,3 +56,11 @@ usuario_cambiarUsuario:
 usuario_cambiarPassword:
     pattern: /cambiarPassword/{idUsuario}/{oldPassword}/{nuevaPassword}
     defaults: { _controller: "CaosMonopolyBundle:Usuario:cambiarPassword" }
+    
+usuario_cambiarUsuario:
+    pattern: /cambiarUsuario/{idUsuario}/{pass}/{nombreAntiguo}/{nombreNuevo} 
+    defaults: { _controller: "CaosMonopolyBundle:Usuario:cambiarUsuario" }
+    
+usuario_empezarPartida:
+    pattern: /empezarPartidaSesion/{idPartida} 
+    defaults: { _controller: "CaosMonopolyBundle:Usuario:empezarPartidaSesion" }

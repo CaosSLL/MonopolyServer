@@ -4,7 +4,6 @@ namespace Caos\MonopolyBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Caos\MonopolyBundle\Entity\Jugador;
 use Caos\MonopolyBundle\Form\JugadorType;
 
@@ -12,27 +11,25 @@ use Caos\MonopolyBundle\Form\JugadorType;
  * Jugador controller.
  *
  */
-class JugadorController extends Controller
-{
+class JugadorController extends Controller {
 
     /**
      * Lists all Jugador entities.
      *
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('CaosMonopolyBundle:Jugador')->obtenerTodos();
 
         return new \Symfony\Component\HttpFoundation\JsonResponse($entities);
     }
+
     /**
      * Creates a new Jugador entity.
      *
      */
-    public function createAction(Request $request)
-    {
+    public function createAction(Request $request) {
         $entity = new Jugador();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
@@ -46,20 +43,19 @@ class JugadorController extends Controller
         }
 
         return $this->render('CaosMonopolyBundle:Jugador:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
+                    'entity' => $entity,
+                    'form' => $form->createView(),
         ));
     }
 
     /**
-    * Creates a form to create a Jugador entity.
-    *
-    * @param Jugador $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createCreateForm(Jugador $entity)
-    {
+     * Creates a form to create a Jugador entity.
+     *
+     * @param Jugador $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createCreateForm(Jugador $entity) {
         $form = $this->createForm(new JugadorType(), $entity, array(
             'action' => $this->generateUrl('jugador_create'),
             'method' => 'POST',
@@ -74,14 +70,13 @@ class JugadorController extends Controller
      * Displays a form to create a new Jugador entity.
      *
      */
-    public function newAction()
-    {
+    public function newAction() {
         $entity = new Jugador();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('CaosMonopolyBundle:Jugador:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
+                    'entity' => $entity,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -89,8 +84,7 @@ class JugadorController extends Controller
      * Finds and displays a Jugador entity.
      *
      */
-    public function showAction($id)
-    {
+    public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('CaosMonopolyBundle:Jugador')->obtenerPorId($id);
@@ -98,16 +92,15 @@ class JugadorController extends Controller
         if (!$entity) {
             return new \Symfony\Component\HttpFoundation\JsonResponse("");
         }
-        
+
         return new \Symfony\Component\HttpFoundation\JsonResponse($entity[0]);
     }
-    
+
     /**
      * Finds and displays a Jugador entity.
      *
      */
-    public function showUsuarioAction($id)
-    {
+    public function showUsuarioAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('CaosMonopolyBundle:Jugador')->obtenerPorUsuario($id);
@@ -115,16 +108,15 @@ class JugadorController extends Controller
         if (!$entity) {
             return new \Symfony\Component\HttpFoundation\JsonResponse("");
         }
-        
+
         return new \Symfony\Component\HttpFoundation\JsonResponse($entity);
     }
-    
+
     /**
      * Finds and displays a Jugador entity.
      *
      */
-    public function showPartidaAction($id)
-    {
+    public function showPartidaAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('CaosMonopolyBundle:Jugador')->obtenerPorPartida($id);
@@ -132,7 +124,7 @@ class JugadorController extends Controller
         if (!$entity) {
             return new \Symfony\Component\HttpFoundation\JsonResponse("");
         }
-        
+
         return new \Symfony\Component\HttpFoundation\JsonResponse($entity);
     }
 
@@ -140,8 +132,7 @@ class JugadorController extends Controller
      * Displays a form to edit an existing Jugador entity.
      *
      */
-    public function editAction($id)
-    {
+    public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('CaosMonopolyBundle:Jugador')->find($id);
@@ -154,21 +145,20 @@ class JugadorController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('CaosMonopolyBundle:Jugador:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'entity' => $entity,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-    * Creates a form to edit a Jugador entity.
-    *
-    * @param Jugador $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Jugador $entity)
-    {
+     * Creates a form to edit a Jugador entity.
+     *
+     * @param Jugador $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createEditForm(Jugador $entity) {
         $form = $this->createForm(new JugadorType(), $entity, array(
             'action' => $this->generateUrl('jugador_update', array('id' => $entity->getId())),
             'method' => 'PUT',
@@ -178,12 +168,12 @@ class JugadorController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Jugador entity.
      *
      */
-    public function updateAction(Request $request, $id)
-    {
+    public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('CaosMonopolyBundle:Jugador')->find($id);
@@ -203,17 +193,17 @@ class JugadorController extends Controller
         }
 
         return $this->render('CaosMonopolyBundle:Jugador:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'entity' => $entity,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
      * Deletes a Jugador entity.
      *
      */
-    public function deleteAction(Request $request, $id)
-    {
+    public function deleteAction(Request $request, $id) {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
@@ -239,23 +229,64 @@ class JugadorController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
-    {
+    private function createDeleteForm($id) {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('jugador_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
+                        ->setAction($this->generateUrl('jugador_delete', array('id' => $id)))
+                        ->setMethod('DELETE')
+                        ->add('submit', 'submit', array('label' => 'Delete'))
+                        ->getForm()
         ;
     }
-    
-    public function personajesDisponiblesAction($token){
-        
+
+    public function personajesDisponiblesAction($token) {
+
         $personajes = $this->getDoctrine()->getManager()
-                ->getRepository("CaosMonopolyBundle:Jugador")->obtenerPersonajes($token);
-        
+                        ->getRepository("CaosMonopolyBundle:Jugador")->obtenerPersonajes($token);
+
         return new \Symfony\Component\HttpFoundation\JsonResponse($personajes);
+    }
+
+    public function actualizarAction(Request $request, $idUsuario, $idPersonaje, $idPartida) {
+
+        $em = $this->getDoctrine()->getManager();
+        
+//        $usuario = $em->getRepository("CaosMonopolyBundle:Usuario")->find($idUsuario);
+//        $personaje = $em->getRepository("CaosMonopolyBundle:Personaje")->find($idPersonaje);
+//        $partida = $em->getRepository("CaosMonopolyBundle:Partida")->find($idPartida);
+        
+        $jugador = new Jugador();
+        $jugador = $em->getRepository("CaosMonopolyBundle:Jugador")->obtenerPorUsuario($idUsuario, $idPartida, false);
+        
+        $jugador = $jugador[0];
+        $jugador->setDinero($request->get("dinero"));
+        $jugador->setPosicion($request->get("posicion"));
+        $jugador->setCarcel($request->get("carcel"));
+        
+        $jugadorTurnoSig = $em->getRepository("CaosMonopolyBundle:Jugador")->obtenerPorUsuario($request->get("idUsuarioSig"), $idPartida, false);
+        
+        $jugador->getIdPartida()->setIdJugadorTurno($jugadorTurnoSig[0]);
+        $jugador->getIdPartida()->setBoteComun($request->get("bote"));
+        
+        $em->flush();
+        
+        return new \Symfony\Component\HttpFoundation\JsonResponse(array("actualizado" => true));
         
     }
     
+    public function recuperarEstadoAction($idUsuario, $idPartida){
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $jugador = $em->getRepository("CaosMonopolyBundle:Jugador")->obtenerPorUsuario($idUsuario, $idPartida);
+        
+        $datos = array();
+        array_push($datos, $jugador[0]);
+        
+        $usuarios = $em->getRepository("CaosMonopolyBundle:Jugador")->obtenerPorPartida($idPartida);
+        array_push($datos, $usuarios);
+        
+        return new \Symfony\Component\HttpFoundation\JsonResponse($datos);
+        
+    }
+
 }

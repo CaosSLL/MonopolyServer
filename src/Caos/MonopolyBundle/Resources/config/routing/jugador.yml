@@ -40,3 +40,11 @@ jugador_delete:
     pattern:  /{id}/delete
     defaults: { _controller: "CaosMonopolyBundle:Jugador:delete" }
     requirements: { _method: post|delete }
+
+jugador_actualizar:
+    pattern:  /actualizar/{idUsuario}/{idPersonaje}/{idPartida}
+    defaults: { _controller: "CaosMonopolyBundle:Jugador:actualizar" }
+
+jugador_recuperarEstado:
+    pattern:  /recuperarEstado/{idUsuario}/{idPartida}
+    defaults: { _controller: "CaosMonopolyBundle:Jugador:recuperarEstado" }

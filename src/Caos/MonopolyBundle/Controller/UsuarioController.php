@@ -25,7 +25,7 @@ class UsuarioController extends Controller {
             if ($u) {
                 $u = $u[0];
                 $session = $request->getSession();
-                $session->set("usuario", array("id" => $u->getId(), "nombre" => $u->getNombre(), "rol" => $u->getRol()));
+                $session->set("usuario", array("id" => $u->getId(), "nombre" => $u->getNombre(), "rol" => $u->getRol(), "estado" => "", "partida" => ""));
 //                session_start();
 //                $_SESSION["idUsuario"] = $u->getId();
 //                $_SESSION["nombreUsuario"] = $u->getNombre();
@@ -43,17 +43,43 @@ class UsuarioController extends Controller {
     public function logoutAction(Request $request) {
 //        session_start();
 //        session_destroy();
-        $session = $request->getSession()->clear();
+        
+        $session = $request->getSession("usuario");
+        $usu = $this->getDoctrine()->getManager()->getRepository("CaosMonopolyBundle:Usuario")->find($session->get("usuario")["id"]);
+        
+        $usu->setEstado("");
+        
+        $this->getDoctrine()->getManager()->flush();
+        
+        $session->clear();
         return new \Symfony\Component\HttpFoundation\JsonResponse(array("autenticado" => false));
     }
 
     public function estaAutenticadoAction(Request $request) {
         $session = $request->getSession("usuario");
-        if ($session) {
-            return new \Symfony\Component\HttpFoundation\JsonResponse(array("autenticado" => true));
+        if ($session->get("usuario")) {
+            $usu = $this->getDoctrine()->getManager()->getRepository("CaosMonopolyBundle:Usuario")->find($session->get("usuario")["id"]);
+            return new \Symfony\Component\HttpFoundation\JsonResponse(
+                    array(
+                "autenticado" => true,
+                "id" => $session->get("usuario")["id"],
+                "nombre" => $session->get("usuario")["nombre"],
+//                "estado" => $session->get("usuario")["estado"],
+                "estado" => $usu->getEstado(),
+                "partida" => $session->get("usuario")["partida"]
+            ));
         } else {
             return new \Symfony\Component\HttpFoundation\JsonResponse(array("autenticado" => false));
         }
+    }
+    
+    public function empezarPartidaSesionAction(Request $request, $idPartida){
+        $session = $request->getSession("usuario");
+        $usuario = $session->get("usuario");
+        $usuario["estado"] = "jugando";
+        $usuario["partida"] = $idPartida;
+        $session->set("usuario",  $usuario);
+        return new \Symfony\Component\HttpFoundation\JsonResponse(array("id" => $usuario["id"]));
     }
 
     /**
@@ -324,8 +350,8 @@ class UsuarioController extends Controller {
                 $em->flush();
             }
             return new \Symfony\Component\HttpFoundation\JsonResponse(array("idUsuario" => $usuario->getId(), "nombreUsuario" => $usuario->getNombre()));
-        }else{
-            return new \Symfony\Component\HttpFoundation\JsonResponse(array("error" => "La contraseña no es correcta"));            
+        } else {
+            return new \Symfony\Component\HttpFoundation\JsonResponse(array("error" => "La contraseña no es correcta"));
         }
     }
 

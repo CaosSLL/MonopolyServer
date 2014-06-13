@@ -57,11 +57,11 @@ class Usuario
     private $partidasGanadas = '0';
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(name="estado", type="boolean", nullable=false)
+     * @ORM\Column(name="estado", type="string", length=30, nullable=false)
      */
-    private $estado = '0';
+    private $estado = '';
 
     /**
      * @var string

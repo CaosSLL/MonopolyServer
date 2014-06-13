@@ -248,8 +248,12 @@ class PartidaController extends Controller {
         $jugadores = $request->get("usuarios");
         foreach($jugadores as $jugador){
             $objJugador = new \Caos\MonopolyBundle\Entity\Jugador();
+            
             $usuario = $em->getRepository("CaosMonopolyBundle:Usuario")->find($jugador["id"]);
             $personaje = $em->getRepository("CaosMonopolyBundle:Personaje")->find($jugador["personaje"]);
+            
+            $usuario->setEstado("jugando");
+            
             $objJugador->setCarcel(false);
             $objJugador->setDinero(1000);
             $objJugador->setPosicion(0);
@@ -262,8 +266,14 @@ class PartidaController extends Controller {
             
         }
         
+        $session = $request->getSession("usuario");
+        $usuario = $session->get("usuario");
+        $usuario["estado"] = "jugando";
+        $usuario["partida"] = $partida->getId();
+        $session->set("usuario",  $usuario);
+        
         return new \Symfony\Component\HttpFoundation\JsonResponse(array("id" => $objJugador->getId()));
         
     }
-
+    
 }

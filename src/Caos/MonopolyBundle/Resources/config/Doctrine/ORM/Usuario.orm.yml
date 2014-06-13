@@ -44,10 +44,11 @@ Usuario:
             default: '0'
             column: partidas_ganadas
         estado:
-            type: boolean
+            type: string
             nullable: false
+            length: 30
             comment: ''
-            default: '0'
+            default: ''
         rol:
             type: string
             nullable: false
