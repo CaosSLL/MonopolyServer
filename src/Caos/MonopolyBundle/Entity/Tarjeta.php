@@ -36,16 +36,16 @@ class Tarjeta
     private $respuestas;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="beneficio", type="string", length=100, nullable=true)
+     * @ORM\Column(name="beneficio", type="integer", nullable=true)
      */
     private $beneficio;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="penalizacion", type="string", length=100, nullable=true)
+     * @ORM\Column(name="penalizacion", type="integer", nullable=true)
      */
     private $penalizacion;
 
@@ -110,7 +110,7 @@ class Tarjeta
     /**
      * Set beneficio
      *
-     * @param string $beneficio
+     * @param integer $beneficio
      * @return Tarjeta
      */
     public function setBeneficio($beneficio)
@@ -123,7 +123,7 @@ class Tarjeta
     /**
      * Get beneficio
      *
-     * @return string 
+     * @return integer 
      */
     public function getBeneficio()
     {
@@ -133,7 +133,7 @@ class Tarjeta
     /**
      * Set penalizacion
      *
-     * @param string $penalizacion
+     * @param integer $penalizacion
      * @return Tarjeta
      */
     public function setPenalizacion($penalizacion)
@@ -146,7 +146,7 @@ class Tarjeta
     /**
      * Get penalizacion
      *
-     * @return string 
+     * @return integer 
      */
     public function getPenalizacion()
     {

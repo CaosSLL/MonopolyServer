@@ -1,0 +1,10 @@
+tarjeta:
+    pattern:  /
+    defaults: { _controller: "CaosMonopolyBundle:Tarjeta:index" }
+
+tarjeta_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "CaosMonopolyBundle:Tarjeta:show" }
+
+
+

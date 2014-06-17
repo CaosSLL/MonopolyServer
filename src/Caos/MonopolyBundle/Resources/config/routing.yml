@@ -22,6 +22,10 @@ CaosMonopolyBundle_casilla:
     resource: "@CaosMonopolyBundle/Resources/config/routing/casilla.yml"
     prefix:   /casilla
     
+CaosMonopolyBundle_tarjeta:
+    resource: "@CaosMonopolyBundle/Resources/config/routing/tarjeta.yml"
+    prefix:   /tarjeta
+    
 CaosMonopolyBundle_posesioncasilla:
     resource: "@CaosMonopolyBundle/Resources/config/routing/posesioncasilla.yml"
     prefix:   /posesioncasilla
